@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <meta name="author" content="Anne Ferris">
-    <meta name="description" content="A website to showcase our previously gained knowledge and assess our skills regarding the learned coursework.">
+    <meta name="description"
+        content="A website to showcase our previously gained knowledge and assess our skills regarding the learned coursework.">
     <link rel="stylesheet" href="styles/index.css">
     <script src="scripts/index.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>WDD 231 - Homepage - Anne Ferris</h1>
         <img src="images/trade.svg">
         <nav>
-            <a>Home</a>
-            <a>Chamber Project</a>
-            <a>Final Project</a>
+            <a href="index.html">Home</a>
+            <a href="chamber-project.html">Chamber Project</a>
+            <a href="final-project.html">Final Project</a>
         </nav>
     </header>
     <main>
         <h1>Home</h1>
         <section>
             <h2>About Me</h2>
-            <p>Welcome to my webpage! My name is Anne Ferris and I am a student at BYU-Pathway. I am in my first year of studying web-development and am making this page as a class project.</p>
+            <p>Welcome to my webpage! My name is Anne Ferris and I am a student at BYU-Pathway. I am in my first year of
+                studying web-development and am making this page as a class project.</p>
         </section>
         <section>
             <h2>My Picture</h2>
             <img src="images/profile.jpg">
         </section>
-        <section>
+        <section class="certificates">
             <h2>Web Certificate Courses</h2>
             <ul>
                 <button type="button">All</button>
@@ -50,10 +54,14 @@
         </section>
     </main>
     <footer>
-        <img src="images/github.png">
-        <img src="images/linkedIn.png">
-        <img src="images/youtube.png">
-        ©<span id="currentYear"></span> | Anne Ferris | Hawaii | Last Modification <span id="lastModified"></span>
+        <div class="social-links">
+            <img src="images/github.png">
+            <img src="images/linkedIn.png">
+            <img src="images/youtube.png">
+        </div>
+        <p class="footer-info">©<span id="currentYear"></span> | Anne Ferris | Hawaii | Last Modification <span
+                id="lastModified"></span></p>
     </footer>
 </body>
+
 </html>
