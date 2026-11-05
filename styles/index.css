@@ -134,11 +134,9 @@ section img {
     width: 100%;
     padding: 6px;
     border: #0b5d86;
-    background-color: #2a8fc2;
+    background-color: #0b5d86;
     color: #ffffff;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
+
 }
 
 .certificates button:hover {
@@ -227,7 +225,7 @@ footer {
         flex-direction: column;
         align-items: stretch;
         width: 100%;
-        border-top: 1px solid rgb(255 255 255 / 25%);
+        ;
     }
 
     nav.is-open {
