@@ -47,35 +47,32 @@
         </section>
         <section class="certificates">
             <h2>Web Certificate Courses</h2>
-            <div class="certificate-buttons">
-                <button type="button">All</button>
-                <button type="button">CSE</button>
-                <button type="button">WDD</button>
+            <div class="certificate-buttons" role="group" aria-label="Filter courses">
+                <button type="button" data-course-filter="all">All Courses</button>
+                <button type="button" data-course-filter="CSE">CSE Courses</button>
+                <button type="button" data-course-filter="WDD">WDD Courses</button>
             </div>
-            <ul>
-                <li>CSE 110</li>
-                <li>CSE 111</li>
-                <li>CSE 210</li>
-                <li>WDD 130</li>
-                <li>WDD 131</li>
-                <li>WDD 231</li>
-            </ul>
+            <p class="course-summary">
+                <span id="course-count">0</span> courses ·
+                <span id="course-credit-total">0</span> credits
+            </p>
+            <ul class="course-list" id="course-list"></ul>
         </section>
     </main>
     <footer>
         <div class="social-links">
-            <a href="https://github.com/annehutchinson407-debug/wdd231" aria-label="GitHub">
+            <a href="https://github.com/annehutchinson407-debug/wdd231">
                 <img src="images/github.svg" alt="GitHub Logo and link">
             </a>
-            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/">
                 <img src="images/linkedin.svg" alt="LinkedIn Logo and link">
             </a>
-            <a href="https://www.youtube.com/" aria-label="YouTube">
+            <a href="https://www.youtube.com/">
                 <img src="images/youtube.svg" alt="YouTube Logo and link">
             </a>
         </div>
-        <p class="footer-info">©<span id="currentYear"></span> | Anne Ferris | Hawaii | Last Modification <span
-                id="lastModified"></span></p>
+        <p class="footer-info">©<span id="currentYear"></span> | Anne Ferris | Hawaii</p>
+        <p class="footer-info">Last Modification <span id="lastModified"></span></p>
     </footer>
 </body>
 
