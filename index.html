@@ -4,16 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 231 Homepage Anne Ferris</title>
+    <title>Anne Ferris | WDD 231 Web Development Portfolio</title>
     <meta name="author" content="Anne Ferris">
     <meta name="description"
-        content="A website to showcase our previously gained knowledge and assess our skills regarding the learned coursework.">
+        content="Explore Anne Ferris's web development coursework, projects, and skills as a BYU-Pathway student.">
     <link rel="stylesheet" href="styles/index-larger.css">
     <link rel="stylesheet" href="styles/index.css">
     <script src="scripts/index.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,20 +19,21 @@
             <img src="images/truck.svg" alt="SVG Logo of a truck">
             <p>WDD 231 - Homepage - Anne Ferris</p>
         </div>
-        <button class="menu-toggle" type="button">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-navigation"
+            aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </button>
-        <nav id="primary-navigation">
-            <a href="index.html">Home</a>
+        <nav id="primary-navigation" aria-label="Primary navigation">
+            <a href="index.html" aria-current="page">Home</a>
             <a href="chamber-project.html">Chamber</a>
             <a href="final-project.html">Final Project</a>
             <a href="add-ons.html">Additional Info</a>
         </nav>
     </header>
     <main>
-        <h1>Home</h1>
+        <h1>Web Development Portfolio</h1>
         <section>
             <h2>About Me</h2>
             <p>Welcome to my webpage! My name is Anne Ferris and I am a student at BYU-Pathway. I am in my first year of
@@ -62,13 +60,13 @@
     <footer>
         <div class="social-links">
             <a href="https://github.com/annehutchinson407-debug/wdd231">
-                <img src="images/github.svg" alt="GitHub Logo and link">
+                <img src="images/github.svg" alt="GitHub">
             </a>
             <a href="https://www.linkedin.com/in/anne-ferris-639a38439/">
-                <img src="images/linkedin.svg" alt="LinkedIn Logo and link">
+                <img src="images/linkedin.svg" alt="LinkedIn">
             </a>
             <a href="https://www.youtube.com/">
-                <img src="images/youtube.svg" alt="YouTube Logo and link">
+                <img src="images/youtube.svg" alt="YouTube">
             </a>
         </div>
         <p class="footer-info">©<span id="currentYear"></span> | Anne Ferris | Hawaii</p>

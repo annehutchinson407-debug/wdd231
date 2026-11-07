@@ -12,7 +12,7 @@ header {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     background-color: #0b5d86;
     color: #ffffff;
 }
@@ -34,7 +34,9 @@ header p {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
+    min-width: 0;
     font-size: 1rem;
+    overflow-wrap: anywhere;
 }
 
 nav {
@@ -45,6 +47,9 @@ nav {
 }
 
 nav a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
     padding: 8px 12px;
     color: #ffffff;
     text-decoration: none;
@@ -53,6 +58,19 @@ nav a {
 nav a:hover {
     text-decoration: overline;
     color: #f2f604;
+}
+
+nav a[aria-current="page"] {
+    background: #bee0f0;
+    color: #0a354a;
+    font-weight: 600;
+}
+
+nav a:focus-visible,
+.menu-toggle:focus-visible,
+.social-links a:focus-visible {
+    outline: 3px solid #f2f604;
+    outline-offset: 2px;
 }
 
 .menu-toggle {
@@ -77,7 +95,7 @@ nav a:hover {
 main {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 12px 16px;
+    gap: 16px;
 }
 
 main h1 {
@@ -89,25 +107,28 @@ main h1 {
 section {
     background: #bee0f0;
     text-align: center;
+    overflow: hidden;
 }
 
 section h2 {
     margin: 0;
     text-align: center;
-    padding: 6px;
+    padding: 8px;
     background: #0b5d86;
     color: #ffffff;
     font-size: 0.95rem;
 }
 
 section p {
-    margin: 10px;
+    margin: 12px;
     line-height: 1.5;
 }
 
 section img {
+    display: block;
     width: min(60%, 220px);
-    height: 220px;
+    height: auto;
+    max-height: 220px;
     margin: 16px auto;
     object-fit: cover;
     border-radius: 4px;
@@ -116,8 +137,8 @@ section img {
 .certificates {
     grid-column: 1 / -1;
     display: grid;
-    gap: 8px;
-    padding: 8px;
+    gap: 12px;
+    padding: 12px;
 }
 
 .certificate-buttons {
@@ -134,6 +155,7 @@ section img {
 }
 
 .certificates button {
+    min-height: 44px;
     padding: 8px 6px;
     border: 1px solid #0b5d86;
     border-radius: 4px;
@@ -161,7 +183,7 @@ section img {
 .course-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
+    gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -210,8 +232,8 @@ section li {
 }
 
 footer {
-    margin-top: 12px;
-    padding: 10px;
+    margin-top: 16px;
+    padding: 12px;
     color: #ffffff;
     background: #0a354a;
     text-align: center;
@@ -231,6 +253,10 @@ footer {
 
 .social-links a {
     display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
     padding: 4px;
 }
 

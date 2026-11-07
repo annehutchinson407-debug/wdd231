@@ -20,13 +20,16 @@
         display: block;
     }
 
+    .course-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     nav {
         display: none;
         grid-column: 1 / -1;
         flex-direction: column;
         align-items: stretch;
         width: 100%;
-        ;
     }
 
     nav.is-open {
@@ -40,7 +43,7 @@
 
     main {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 16px;
     }
 
     main h1,
@@ -52,9 +55,5 @@
 @media screen and (max-width: 380px) {
     header div p {
         font-size: 0.88rem;
-    }
-
-    .course-list {
-        gap: 8px;
     }
 }

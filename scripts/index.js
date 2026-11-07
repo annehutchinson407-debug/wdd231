@@ -50,7 +50,8 @@ const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#primary-navigation");
 
 menuToggle.addEventListener("click", () => {
-    navigation.classList.toggle("is-open");
+    const isOpen = navigation.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
 });
 
 const courseList = document.querySelector("#course-list");
