@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directory</title>
+    <title>Directory - Chamber of Commerce Haiku</title>
     <meta name="author" content="Anne Ferris">
     <meta name="description"
         content="This site is to practice our programming with a group and should result in a website that shows a Chamber of Commerece for Haiku.">
@@ -25,11 +25,19 @@
 
 <body>
     <header>
-        <img src="images/truck.svg" alt="Logo of a Truck with an arrow.">
-        <p>Directory</p>
-        <nav>
+        <a class="site-brand" href="../index.html">
+            <img src="images/truck.svg" alt="Logo of a Truck with an Arrow">
+            <span>Haiku Chamber of Commerce</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
+            aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="primary-navigation">
             <a href="../index.html">Home</a>
-            <a href="directory.html">Directory</a>
+            <a href="directory.html" aria-current="page">Directory</a>
             <a href="join.html">Join</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -38,21 +46,30 @@
         <h1>Our Vendors</h1>
     </main>
     <footer>
-        <h1>Haiku Chamber of Commerce</h1>
-        <p>1234 Roadside Avenue</p>
-        <p>96 Hawaii, USA</p>
-        <p>totallyrealinfo@haikucc.org</p>
-        <p>+1 808 101-1010</p>
-        <a href="https://github.com/annehutchinson407-debug/wdd231"></a>
-        <img src="images/github.svg" alt="GitHub Logo">
-        <a href="https://www.linkedin.com/in/anne-ferris-639a38439/"></a>
-        <img src="images/linkedin.svg" alt="LinkedIn Logo">
-        <a href="https://www.youtube.com/"></a>
-        <img src="images/youtube.svg" alt="YouTube Logo">
-        <p>WDD231 Class Project</p>
-        <p>Anne Ferris</p>
-        <p>©<span id="currentYear"></span> Haiku Chamber of Commerce</p>
-        <p>Last Modified: <span id="lastModified"></span></p>
+        <div class="footer-contact">
+            <p class="footer-name">Haiku Chamber of Commerce</p>
+            <p>1234 Roadside Avenue</p>
+            <p>96 Hawaii, USA</p>
+            <p>totallyrealinfo@haikucc.org</p>
+            <p>+1 808 101-1010</p>
+        </div>
+        <div class="social-links" aria-label="Social links">
+            <a href="https://github.com/annehutchinson407-debug/wdd231" aria-label="GitHub">
+                <img src="images/github.svg" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/" aria-label="LinkedIn">
+                <img src="images/linkedin.svg" alt="">
+            </a>
+            <a href="https://www.youtube.com/" aria-label="YouTube">
+                <img src="images/youtube.svg" alt="">
+            </a>
+        </div>
+        <div class="footer-project">
+            <p>WDD231 Class Project</p>
+            <p>Anne Ferris</p>
+            <p>©<span id="currentYear"></span> Haiku Chamber of Commerce</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
     </footer>
 </body>
 

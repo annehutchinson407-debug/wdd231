@@ -1,0 +1,43 @@
+@media screen and (min-width: 48rem) {
+    header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.5rem;
+        padding-block: 1rem;
+    }
+
+    .js .menu-toggle {
+        display: none;
+    }
+
+    nav,
+    .js nav:not(.is-open) {
+        grid-column: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    nav a {
+        min-height: 2.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .business-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    footer {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}

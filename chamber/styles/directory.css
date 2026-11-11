@@ -1,38 +1,243 @@
 :root {
     --color-primary: #0b5d86;
     --color-dark: #0a354a;
+    --color-light: #dcecf4;
     --color-highlight: #f2f604;
 }
 
 body {
     color: var(--color-dark);
+    font-family: "Inter", "Fira Sans", Arial, sans-serif;
 }
 
 header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem max(1rem, calc((100% - 1200px) / 2));
     background-color: var(--color-primary);
     color: #ffffff;
 }
 
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    color: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-brand img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+}
+
+.menu-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.5rem;
+    border: 1px solid #ffffff;
+    border-radius: 0.25rem;
+    background: transparent;
+    cursor: pointer;
+}
+
+.js .menu-toggle {
+    display: block;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 2px;
+    margin: 5px 0;
+    background: #ffffff;
+}
+
 nav {
-    background-color: var(--color-dark);
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.js nav:not(.is-open) {
+    display: none;
 }
 
 nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-dark);
     color: #ffffff;
     text-decoration: none;
 }
 
 nav a:hover {
     color: var(--color-highlight);
-    text-decoration: overline;
 }
 
-nav a:focus-visible {
+nav a:focus-visible,
+.menu-toggle:focus-visible,
+.social-links a:focus-visible {
     outline: 3px solid var(--color-highlight);
     outline-offset: 2px;
 }
 
-footer {
+nav a[aria-current="page"] {
+    background-color: #bee0f0;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+main {
+    width: min(100% - 2rem, 1200px);
+    min-height: 20rem;
+    margin: 0 auto;
+    padding: 1.5rem 0 2rem;
+}
+
+main h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.directory-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 1.5rem;
+}
+
+.directory-controls button {
+    min-width: 6rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-dark);
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.directory-controls button:hover,
+.directory-controls button[aria-pressed="true"] {
     background-color: var(--color-dark);
+}
+
+.directory-controls button:focus-visible {
+    outline: 3px solid var(--color-highlight);
+    outline-offset: 2px;
+}
+
+.business-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.business-card {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: #dcecf4;
+    box-shadow: 0 2px 8px rgb(10 53 74 / 12%);
+}
+
+.business-card-heading {
+    margin: 0;
+    padding: 0.75rem 1rem 0.25rem;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.business-card-tagline {
+    margin: 0;
+    padding: 0 1rem 0.75rem;
+    border-bottom: 2px solid rgb(10 53 74 / 25%);
+    text-align: center;
+}
+
+.business-card-details {
+    display: grid;
+    grid-template-columns: minmax(5rem, 35%) minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.business-card-logo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.business-card-details p {
+    margin: 0 0 0.75rem;
+    overflow-wrap: anywhere;
+}
+
+.business-list {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.business-list .business-card {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem max(1rem, calc((100% - 1200px) / 2));
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+footer p {
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+}
+
+.footer-name {
+    font-weight: 700;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-dark);
+}
+
+.social-links img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.footer-project {
+    align-self: center;
+}
+
+.js nav.is-open {
+    display: flex;
     color: #ffffff;
 }
