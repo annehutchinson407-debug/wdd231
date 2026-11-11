@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+main {
+    display: block;
+}
+
+h1 {
+    margin: 0.67em 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+}
+
+a {
+    background-color: transparent;
+}

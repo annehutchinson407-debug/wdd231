@@ -1,0 +1,38 @@
+:root {
+    --color-primary: #0b5d86;
+    --color-dark: #0a354a;
+    --color-highlight: #f2f604;
+}
+
+body {
+    color: var(--color-dark);
+}
+
+header {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+nav {
+    background-color: var(--color-dark);
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--color-highlight);
+    text-decoration: overline;
+}
+
+nav a:focus-visible {
+    outline: 3px solid var(--color-highlight);
+    outline-offset: 2px;
+}
+
+footer {
+    background-color: var(--color-dark);
+    color: #ffffff;
+}
