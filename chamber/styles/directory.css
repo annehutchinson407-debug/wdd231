@@ -3,6 +3,8 @@
     --color-dark: #0a354a;
     --color-light: #dcecf4;
     --color-highlight: #f2f604;
+    --white: #ffffff;
+    --black: #000000;
 }
 
 body {
@@ -17,7 +19,7 @@ header {
     gap: 0.75rem;
     padding: 0.75rem max(1rem, calc((100% - 1200px) / 2));
     background-color: var(--color-primary);
-    color: #ffffff;
+    color: var(--white)
 }
 
 .site-brand {
@@ -42,7 +44,7 @@ header {
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.5rem;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--white);
     border-radius: 0.25rem;
     background: transparent;
     cursor: pointer;
@@ -56,7 +58,7 @@ header {
     display: block;
     height: 2px;
     margin: 5px 0;
-    background: #ffffff;
+    background: var(--white);
 }
 
 nav {
@@ -75,7 +77,7 @@ nav a {
     padding: 0.75rem 1rem;
     border-radius: 0.25rem;
     background-color: var(--color-dark);
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
 }
 
@@ -91,7 +93,7 @@ nav a:focus-visible,
 }
 
 nav a[aria-current="page"] {
-    background-color: #bee0f0;
+    background-color: var(--color-light);
     color: var(--color-dark);
     font-weight: 700;
 }
@@ -119,10 +121,10 @@ main h1 {
     min-width: 6rem;
     min-height: 2.75rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--color-dark);
+    border: 1px solid var(--black);
     border-radius: 0.25rem;
     background-color: var(--color-primary);
-    color: #ffffff;
+    color: var(--white);
     font: inherit;
     cursor: pointer;
 }
@@ -146,8 +148,8 @@ main h1 {
 .business-card {
     overflow: hidden;
     border-radius: 0.5rem;
-    background-color: #dcecf4;
-    box-shadow: 0 2px 8px rgb(10 53 74 / 12%);
+    background-color: var(--white);
+    box-shadow: 0 2px 8px var(--black);
 }
 
 .business-card-heading {
@@ -160,7 +162,7 @@ main h1 {
 .business-card-tagline {
     margin: 0;
     padding: 0 1rem 0.75rem;
-    border-bottom: 2px solid rgb(10 53 74 / 25%);
+    border-bottom: 2px solid var(--color-dark);
     text-align: center;
 }
 
@@ -239,5 +241,5 @@ footer p {
 
 .js nav.is-open {
     display: flex;
-    color: #ffffff;
+    color: var(--white);
 }
