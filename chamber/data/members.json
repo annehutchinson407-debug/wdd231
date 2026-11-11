@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Haiku Harvest Market",
+        "address": "810 Kokomo Road, Haiku, HI 96708",
+        "phone": "+1 808-555-0101",
+        "website": "https://example.com/haiku-harvest",
+        "image": "haiku-harvest.svg",
+        "membership": 3,
+        "tagline": "Fresh from Maui farms",
+        "description": "A neighborhood market featuring locally grown produce and island-made pantry goods."
+    },
+    {
+        "name": "North Shore Builders",
+        "address": "25 Hana Highway, Haiku, HI 96708",
+        "phone": "+1 808-555-0102",
+        "website": "https://example.com/north-shore-builders",
+        "image": "north-shore-builders.svg",
+        "membership": 2,
+        "tagline": "Building with island care",
+        "description": "Residential construction and renovation services for homes across the North Shore."
+    },
+    {
+        "name": "Aloha Bloom Studio",
+        "address": "55 Haiku Road, Haiku, HI 96708",
+        "phone": "+1 808-555-0103",
+        "website": "https://example.com/aloha-bloom",
+        "image": "aloha-bloom.svg",
+        "membership": 1,
+        "tagline": "Flowers for every occasion",
+        "description": "A floral design studio creating bouquets with tropical flowers and locally sourced greenery."
+    },
+    {
+        "name": "Maui Sunrise Coffee",
+        "address": "1200 Kaupakalua Road, Haiku, HI 96708",
+        "phone": "+1 808-555-0104",
+        "website": "https://example.com/maui-sunrise-coffee",
+        "image": "maui-sunrise-coffee.svg",
+        "membership": 3,
+        "tagline": "Good mornings, grown on Maui",
+        "description": "A small-batch coffee roaster and cafe serving locally roasted beans and fresh pastries."
+    },
+    {
+        "name": "Pauwela Pet Supply",
+        "address": "35 Baldwin Avenue, Paia, HI 96779",
+        "phone": "+1 808-555-0105",
+        "website": "https://example.com/pauwela-pets",
+        "image": "pauwela-pet-supply.svg",
+        "membership": 1,
+        "tagline": "Island essentials for happy pets",
+        "description": "An independent pet shop offering food, toys, and everyday supplies for local companions."
+    },
+    {
+        "name": "Hana Highway Wellness",
+        "address": "410 Hana Highway, Haiku, HI 96708",
+        "phone": "+1 808-555-0106",
+        "website": "https://example.com/hana-wellness",
+        "image": "hana-highway-wellness.svg",
+        "membership": 2,
+        "tagline": "Care for your whole self",
+        "description": "A community wellness clinic offering massage, movement classes, and restorative care."
+    },
+    {
+        "name": "Makai Creative Works",
+        "address": "18 West Kuiaha Road, Haiku, HI 96708",
+        "phone": "+1 808-555-0107",
+        "website": "https://example.com/makai-creative",
+        "image": "makai-creative-works.svg",
+        "membership": 1,
+        "tagline": "Creative ideas, local impact",
+        "description": "A design and print studio helping small businesses with branding, signage, and promotional materials."
+    }
+]

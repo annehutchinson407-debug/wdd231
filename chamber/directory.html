@@ -44,6 +44,12 @@
     </header>
     <main>
         <h1>Our Vendors</h1>
+        <div class="directory-controls" role="group" aria-label="Choose member directory layout">
+            <button id="grid-view" type="button" aria-pressed="true" aria-controls="members">Grid</button>
+            <button id="list-view" type="button" aria-pressed="false" aria-controls="members">List</button>
+        </div>
+        <p id="directory-status" class="directory-status" role="status" aria-live="polite">Loading members...</p>
+        <section id="members" class="business-grid" aria-label="Chamber members"></section>
     </main>
     <footer>
         <div class="footer-contact">

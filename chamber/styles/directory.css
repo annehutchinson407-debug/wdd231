@@ -139,6 +139,11 @@ main h1 {
     outline-offset: 2px;
 }
 
+.directory-status {
+    margin: 0 0 1rem;
+    text-align: center;
+}
+
 .business-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -192,6 +197,19 @@ main h1 {
 .business-list .business-card {
     border-radius: 0;
     box-shadow: none;
+}
+
+.business-list .business-card:nth-child(even) {
+    background-color: var(--color-light);
+}
+
+.business-card-details a {
+    color: var(--color-primary);
+}
+
+.business-card-details a:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 footer {
