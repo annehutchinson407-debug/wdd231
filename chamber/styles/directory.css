@@ -3,6 +3,7 @@
     --color-dark: #0a354a;
     --color-light: #dcecf4;
     --color-highlight: #f2f604;
+    --color-transparent: #ffffff00;
     --white: #ffffff;
     --black: #000000;
 }
@@ -27,7 +28,7 @@ header {
     align-items: center;
     gap: 0.75rem;
     min-width: 0;
-    color: inherit;
+    color: var(--white);
     font-size: 1.15rem;
     font-weight: 700;
     text-decoration: none;
@@ -46,7 +47,7 @@ header {
     padding: 0.5rem;
     border: 1px solid var(--white);
     border-radius: 0.25rem;
-    background: transparent;
+    background: var(--color-transparent);
     cursor: pointer;
 }
 
