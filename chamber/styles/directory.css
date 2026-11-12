@@ -3,9 +3,9 @@
     --color-dark: #0a354a;
     --color-light: #dcecf4;
     --color-highlight: #f2f604;
-    --color-transparent: #ffffff00;
-    --white: #ffffff;
-    --black: #000000;
+    --color-clear: #ffffff00;
+    --color-very-light: #ffffff;
+    --color-shadow: #000000;
 }
 
 body {
@@ -20,7 +20,7 @@ header {
     gap: 0.75rem;
     padding: 0.75rem max(1rem, calc((100% - 1200px) / 2));
     background-color: var(--color-primary);
-    color: var(--white)
+    color: var(--color-very-light)
 }
 
 .site-brand {
@@ -28,7 +28,7 @@ header {
     align-items: center;
     gap: 0.75rem;
     min-width: 0;
-    color: var(--white);
+    color: var(--color-very-light);
     font-size: 1.15rem;
     font-weight: 700;
     text-decoration: none;
@@ -45,9 +45,9 @@ header {
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.5rem;
-    border: 1px solid var(--white);
+    border: 1px solid var(--color-very-light);
     border-radius: 0.25rem;
-    background: var(--color-transparent);
+    background: var(--color-clear);
     cursor: pointer;
 }
 
@@ -59,7 +59,7 @@ header {
     display: block;
     height: 2px;
     margin: 5px 0;
-    background: var(--white);
+    background: var(--color-very-light);
 }
 
 nav {
@@ -78,7 +78,7 @@ nav a {
     padding: 0.75rem 1rem;
     border-radius: 0.25rem;
     background-color: var(--color-dark);
-    color: var(--white);
+    color: var(--color-very-light);
     text-decoration: none;
 }
 
@@ -122,10 +122,10 @@ main h1 {
     min-width: 6rem;
     min-height: 2.75rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--black);
+    border: 1px solid var(--color-shadow);
     border-radius: 0.25rem;
     background-color: var(--color-primary);
-    color: var(--white);
+    color: var(--color-very-light);
     font: inherit;
     cursor: pointer;
 }
@@ -154,8 +154,8 @@ main h1 {
 .business-card {
     overflow: hidden;
     border-radius: 0.5rem;
-    background-color: var(--white);
-    box-shadow: 0 2px 8px var(--black);
+    background-color: var(--color-very-light);
+    box-shadow: 0 2px 8px var(--color-shadow);
 }
 
 .business-card-heading {
@@ -197,7 +197,7 @@ main h1 {
 
 .business-list .business-card {
     border-radius: 0;
-    box-shadow: 0 0 0 #00000000;
+    box-shadow: var(--color-shadow);
 }
 
 .business-list .business-card:nth-child(even) {
@@ -260,5 +260,5 @@ footer p {
 
 .js nav.is-open {
     display: flex;
-    color: var(--white);
+    color: var(--color-very-light);
 }
