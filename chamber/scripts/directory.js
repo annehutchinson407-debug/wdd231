@@ -27,7 +27,7 @@ function setDirectoryView(view) {
     listViewButton.setAttribute("aria-pressed", !isGrid);
 }
 
-function createMemberCard(member) {
+function createMemberCard(member, index) {
     const card = document.createElement("article");
     card.className = "business-card";
 
@@ -48,7 +48,10 @@ function createMemberCard(member) {
     image.alt = `${member.name} logo`;
     image.width = 160;
     image.height = 160;
-    image.loading = "lazy";
+    image.loading = index === 0 ? "eager" : "lazy";
+    if (index === 0) {
+        image.fetchPriority = "high";
+    }
 
     const information = document.createElement("div");
     const address = document.createElement("p");

@@ -12,15 +12,24 @@
     <meta property="og:description"
         content="This site is to practice our programming with a group and should result in a website that shows a Chamber of Commerece for Haiku.">
     <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/">
-    <meta property="og:image" content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <meta property="og:image"
+        content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <link rel="preload" href="data/members.json" as="fetch" type="application/json" crossorigin>
+    <link rel="preload" href="images/haiku-harvest.svg" as="image" fetchpriority="high">
     <script src="scripts/directory.js" defer></script>
     <link rel="stylesheet" href="styles/directory-normalize.css">
     <link rel="stylesheet" href="styles/directory.css">
     <link rel="stylesheet" href="styles/directory-larger.css">
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional">
+    </noscript>
 </head>
 
 <body>
@@ -36,7 +45,7 @@
             <span></span>
         </button>
         <nav id="primary-navigation">
-            <a href="../index.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="directory.html" aria-current="page">Directory</a>
             <a href="join.html">Join</a>
             <a href="contact.html">Contact</a>
