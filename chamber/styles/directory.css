@@ -111,6 +111,47 @@ main h1 {
     font-size: clamp(1.75rem, 4vw, 2.25rem);
 }
 
+.hero {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 1.5rem;
+}
+
+.hero img {
+    width: 100%;
+    max-height: 24rem;
+    object-fit: cover;
+    border-radius: 0.2rem;
+}
+
+.call-to-action {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--color-very-light);
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-very-light);
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.call-to-action:hover {
+    background-color: var(--color-dark);
+}
+
+.call-to-action:focus-visible {
+    outline: 3px solid var(--color-highlight);
+    outline-offset: 3px;
+}
+
 .directory-controls {
     display: flex;
     justify-content: center;
