@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory - Chamber of Commerce Haiku</title>
+    <meta name="author" content="Anne Ferris">
+    <meta name="description"
+        content="This site is to practice our programming with a group and should result in a website that shows a Chamber of Commerece for Haiku.">
+    <meta property="og:title" content="Chamber of Commerce - Haiku">
+    <meta property="og:description"
+        content="This site is to practice our programming with a group and should result in a website that shows a Chamber of Commerece for Haiku.">
+    <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/">
+    <meta property="og:image"
+        content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <link rel="preload" href="data/members.json" as="fetch" type="application/json" crossorigin>
+    <link rel="preload" href="images/haiku-harvest.svg" as="image" fetchpriority="high">
+    <script src="scripts/directory.js" defer></script>
+    <link rel="stylesheet" href="styles/directory-normalize.css">
+    <link rel="stylesheet" href="styles/directory.css">
+    <link rel="stylesheet" href="styles/directory-larger.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional">
+    </noscript>
+</head>
+<body>
+    <head>
+        <a class="site-brand" href="../index.html">
+            <img src="images/truck.svg" alt="Logo of a Truck with an Arrow">
+            <span>Haiku Chamber of Commerce</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
+            aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="primary-navigation">
+            <a href="index.html">Home</a>
+            <a href="directory.html" aria-current="page">Directory</a>
+            <a href="join.html">Join</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </head>
+    <main>
+        <img src="images/haiku-hawaii.jpg">
+        <!-- Call to Action button to be made-->
+        <button></button>
+        <section>
+            <h1>Current Events</h1>
+        </section>
+        <section>
+            <h1>Weather</h1>
+        </section>
+        <section>
+            <h1>Company Spotlights</h1>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            <p class="footer-name">Haiku Chamber of Commerce</p>
+            <p>1234 Roadside Avenue</p>
+            <p>96 Hawaii, USA</p>
+            <p>totallyrealinfo@haikucc.org</p>
+            <p>+1 808 101-1010</p>
+        </div>
+        <nav class="social-links" aria-label="Social links">
+            <a href="https://github.com/annehutchinson407-debug/wdd231" aria-label="GitHub">
+                <img src="images/github.svg" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/" aria-label="LinkedIn">
+                <img src="images/linkedin.svg" alt="">
+            </a>
+            <a href="https://www.youtube.com/" aria-label="YouTube">
+                <img src="images/youtube.svg" alt="">
+            </a>
+        </nav>
+        <div class="footer-project">
+            <p>WDD231 Class Project</p>
+            <p>Anne Ferris</p>
+            <p>©<span id="currentYear"></span> Haiku Chamber of Commerce</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+</body>
+</html>
