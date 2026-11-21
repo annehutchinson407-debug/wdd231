@@ -224,6 +224,17 @@ main h1 {
     outline-offset: 2px;
 }
 
+.spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.spotlight-membership {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
 .directory-controls {
     display: flex;
     justify-content: center;

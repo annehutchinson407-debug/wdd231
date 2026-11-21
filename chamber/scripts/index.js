@@ -9,6 +9,8 @@ const currentTemperature = document.querySelector("#weather-temperature");
 const currentDescription = document.querySelector("#weather-description");
 const forecastContainer = document.querySelector("#weather-forecast-container");
 const forecastList = document.querySelector("#weather-forecast");
+const spotlightContainer = document.querySelector("#spotlight-cards");
+const spotlightStatus = document.querySelector("#spotlight-status");
 const googleFontsStylesheet = document.querySelector("#google-fonts");
 
 const OPENWEATHERMAP_API_KEY = window.OPENWEATHERMAP_API_KEY || "";
@@ -19,38 +21,32 @@ const haikuLocation = {
 
 document.documentElement.classList.add("js");
 
-if (googleFontsStylesheet) {
-    const enableGoogleFonts = () => {
-        googleFontsStylesheet.media = "all";
-    };
-
-    googleFontsStylesheet.addEventListener("load", enableGoogleFonts, { once: true });
-    if (googleFontsStylesheet.sheet) {
-        enableGoogleFonts();
-    }
-}
-
 if (menuToggle && navigation) {
     menuToggle.addEventListener("click", () => {
         const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-        menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+        if (isExpanded) {
+            menuToggle.setAttribute("aria-expanded", "false");
+        } else {
+            menuToggle.setAttribute("aria-expanded", "true");
+        }
         navigation.classList.toggle("is-open", !isExpanded);
     });
 }
 
 if (currentYearElement) {
-    currentYearElement.textContent = String(new Date().getFullYear());
+    currentYearElement.textContent = new Date().getFullYear();
 }
 
 if (lastModifiedElement) {
-    const lastModifiedDate = new Date(document.lastModified);
-    lastModifiedElement.textContent = Number.isNaN(lastModifiedDate.getTime())
-        ? "Unavailable"
-        : lastModifiedDate.toLocaleString();
+    lastModifiedElement.textContent = document.lastModified;
 }
 
 weatherRetryButton.addEventListener("click", loadWeather);
 loadWeather();
+
+if (spotlightContainer && spotlightStatus) {
+    loadSpotlights();
+}
 
 async function loadWeather() {
     weatherStatus.textContent = "Loading current conditions and the 3-day forecast...";
@@ -68,12 +64,14 @@ async function apiFetch() {
     }
 
     try {
-        const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
-        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
-        const [current, forecast] = await Promise.all([
-            fetchWeather(currentUrl),
-            fetchWeather(forecastUrl)
-        ]);
+        const currentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" +
+            haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
+            "&units=imperial&appid=" + OPENWEATHERMAP_API_KEY;
+        const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+            haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
+            "&units=imperial&appid=" + OPENWEATHERMAP_API_KEY;
+        const current = await fetchWeather(currentUrl);
+        const forecast = await fetchWeather(forecastUrl);
         renderCurrentWeather(current);
         renderForecast(forecast, Date.now() / 1000);
         weatherStatus.textContent = "Weather data for Haiku, Hawaii, USA.";
@@ -86,90 +84,202 @@ async function apiFetch() {
 async function fetchWeather(url) {
     const response = await fetch(url);
     if (!response.ok) {
-        throw new Error(await response.text());
+        throw new Error("Weather request failed");
     }
     return response.json();
 }
 
 function renderCurrentWeather(data) {
-    const temperature = data.main?.temp;
-    const description = data.weather?.[0]?.description;
-    if (!Number.isFinite(temperature) || typeof description !== "string") {
-        throw new Error("Current weather response is missing temperature or description.");
-    }
-
-    currentTemperature.textContent = `${Math.round(temperature)}`;
-    currentDescription.textContent = description;
+    currentTemperature.textContent = Math.round(data.main.temp);
+    currentDescription.textContent = data.weather[0].description;
     currentWeatherContainer.hidden = false;
 }
 
 function renderForecast(data, currentTimestamp) {
-    const timezoneOffset = data.city?.timezone;
-    if (!Number.isFinite(timezoneOffset) || !Number.isFinite(currentTimestamp) || !Array.isArray(data.list)) {
-        throw new Error("Forecast response is missing timezone or forecast data.");
-    }
+    const todayKey = getHaikuDateKey(currentTimestamp);
+    const forecastDays = [];
 
-    const todayKey = getLocalDateKey(currentTimestamp, timezoneOffset);
-    const forecastByDate = new Map();
-
-    for (const entry of data.list) {
-        if (!Number.isFinite(entry.dt) || !Number.isFinite(entry.main?.temp_min) ||
-            !Number.isFinite(entry.main?.temp_max)) {
+    for (let i = 0; i < data.list.length; i++) {
+        const entry = data.list[i];
+        const dateKey = getHaikuDateKey(entry.dt);
+        if (dateKey === todayKey) {
             continue;
         }
 
-        const dateKey = getLocalDateKey(entry.dt, timezoneOffset);
-        if (dateKey <= todayKey) {
-            continue;
+        let dayIndex = -1;
+        for (let j = 0; j < forecastDays.length; j++) {
+            if (forecastDays[j].date === dateKey) {
+                dayIndex = j;
+            }
         }
 
-        const day = forecastByDate.get(dateKey) || {
-            high: Number.NEGATIVE_INFINITY,
-            low: Number.POSITIVE_INFINITY
-        };
-        day.high = Math.max(day.high, entry.main.temp_max);
-        day.low = Math.min(day.low, entry.main.temp_min);
-        forecastByDate.set(dateKey, day);
+        if (dayIndex === -1) {
+            const day = {
+                date: dateKey,
+                timestamp: entry.dt,
+                high: entry.main.temp_max,
+                low: entry.main.temp_min
+            };
+            forecastDays.push(day);
+        } else {
+            if (entry.main.temp_max > forecastDays[dayIndex].high) {
+                forecastDays[dayIndex].high = entry.main.temp_max;
+            }
+            if (entry.main.temp_min < forecastDays[dayIndex].low) {
+                forecastDays[dayIndex].low = entry.main.temp_min;
+            }
+        }
     }
 
-    const forecastDays = [...forecastByDate.entries()].sort(([dateA], [dateB]) => dateA.localeCompare(dateB)).slice(0, 3);
-    if (forecastDays.length !== 3) {
-        throw new Error("OpenWeatherMap did not provide three upcoming forecast days.");
-    }
-
-    const items = forecastDays.map(([dateKey, temperatures]) => {
+    forecastList.innerHTML = "";
+    for (let i = 0; i < 3 && i < forecastDays.length; i++) {
+        const temperatures = forecastDays[i];
         const item = document.createElement("li");
         const date = document.createElement("strong");
-        date.textContent = formatForecastDate(dateKey);
+        date.textContent = formatForecastDate(temperatures.timestamp);
 
         const high = document.createElement("span");
-        high.textContent = `High: ${Math.round(temperatures.high)} °F`;
+        high.textContent = "High: " + Math.round(temperatures.high) + " °F";
 
         const low = document.createElement("span");
-        low.textContent = `Low: ${Math.round(temperatures.low)} °F`;
+        low.textContent = "Low: " + Math.round(temperatures.low) + " °F";
 
-        item.append(date, high, low);
-        return item;
-    });
-
-    forecastList.replaceChildren(...items);
+        item.appendChild(date);
+        item.appendChild(high);
+        item.appendChild(low);
+        forecastList.appendChild(item);
+    }
     forecastContainer.hidden = false;
 }
 
-function getLocalDateKey(timestamp, timezoneOffset) {
-    return new Date((timestamp + timezoneOffset) * 1000).toISOString().slice(0, 10);
+function getHaikuDateKey(timestamp) {
+    return new Date(timestamp * 1000).toLocaleDateString("en-US", {
+        timeZone: "Pacific/Honolulu"
+    });
 }
 
-function formatForecastDate(dateKey) {
-    return new Intl.DateTimeFormat("en-US", {
+function formatForecastDate(timestamp) {
+    return new Date(timestamp * 1000).toLocaleDateString("en-US", {
         weekday: "long",
         month: "short",
         day: "numeric",
-        timeZone: "UTC"
-    }).format(new Date(`${dateKey}T00:00:00Z`));
+        timeZone: "Pacific/Honolulu"
+    });
 }
 
 function showWeatherError(message, canRetry) {
     weatherStatus.textContent = message;
     weatherRetryButton.hidden = !canRetry;
+}
+
+async function loadSpotlights() {
+    try {
+        const response = await fetch("data/members.json");
+        if (!response.ok) {
+            throw new Error("Member request failed");
+        }
+
+        const members = await response.json();
+
+        const eligibleMembers = [];
+        for (let i = 0; i < members.length; i++) {
+            if (members[i].membership === 2 || members[i].membership === 3) {
+                eligibleMembers.push(members[i]);
+            }
+        }
+
+        if (eligibleMembers.length < 2) {
+            spotlightStatus.textContent = "Not enough silver or gold members.";
+            return;
+        }
+
+        let spotlightCount = Math.floor(Math.random() * 2) + 2;
+        if (spotlightCount > eligibleMembers.length) {
+            spotlightCount = eligibleMembers.length;
+        }
+
+        const selectedMembers = [];
+        while (selectedMembers.length < spotlightCount) {
+            const randomIndex = Math.floor(Math.random() * eligibleMembers.length);
+            const member = eligibleMembers[randomIndex];
+            let alreadySelected = false;
+
+            for (let i = 0; i < selectedMembers.length; i++) {
+                if (selectedMembers[i] === member) {
+                    alreadySelected = true;
+                }
+            }
+
+            if (alreadySelected === false) {
+                selectedMembers.push(member);
+            }
+        }
+
+        spotlightContainer.innerHTML = "";
+        for (let i = 0; i < selectedMembers.length; i++) {
+            const member = selectedMembers[i];
+            spotlightContainer.appendChild(createSpotlightCard(member));
+        }
+
+        spotlightStatus.textContent = "Showing " + spotlightCount + " silver and gold members.";
+    } catch (error) {
+        console.error("Could not load spotlights", error);
+        spotlightStatus.textContent = "Could not load spotlight members.";
+    }
+}
+
+function createSpotlightCard(member) {
+    const card = document.createElement("article");
+    card.className = "business-card spotlight-card";
+
+    const heading = document.createElement("h3");
+    heading.className = "business-card-heading";
+    heading.textContent = member.name;
+
+    const details = document.createElement("div");
+    details.className = "business-card-details";
+
+    const logo = document.createElement("img");
+    logo.className = "business-card-logo";
+    logo.src = "images/" + member.image;
+    logo.alt = member.name + " logo";
+    logo.width = 160;
+    logo.height = 160;
+    logo.loading = "lazy";
+
+    const information = document.createElement("div");
+    const phone = document.createElement("p");
+    phone.textContent = "Phone: " + member.phone;
+
+    const address = document.createElement("p");
+    address.textContent = "Address: " + member.address;
+
+    const website = document.createElement("p");
+    const websiteLink = document.createElement("a");
+    websiteLink.href = member.website;
+    websiteLink.textContent = member.website;
+    websiteLink.target = "_blank";
+    websiteLink.rel = "noopener noreferrer";
+    website.appendChild(document.createTextNode("Website: "));
+    website.appendChild(websiteLink);
+
+    const membership = document.createElement("p");
+    membership.className = "spotlight-membership";
+    membership.textContent = "Membership: ";
+    if (member.membership === 3) {
+        membership.textContent += "Gold";
+    } else {
+        membership.textContent += "Silver";
+    }
+
+    information.appendChild(phone);
+    information.appendChild(address);
+    information.appendChild(website);
+    information.appendChild(membership);
+    details.appendChild(logo);
+    details.appendChild(information);
+    card.appendChild(heading);
+    card.appendChild(details);
+
+    return card;
 }

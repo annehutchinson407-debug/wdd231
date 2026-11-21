@@ -35,7 +35,7 @@
 
     <header>
         <a class="site-brand" href="../index.html">
-            <img src="images/truck.svg">
+            <img src="images/truck.svg" alt="">
             <span>Haiku Chamber of Commerce</span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
@@ -77,8 +77,10 @@
                 <ol id="weather-forecast" class="weather-forecast"></ol>
             </div>
         </section>
-        <section>
-            <h2>Company Spotlights</h2>
+        <section class="spotlight-section" aria-labelledby="spotlights-heading">
+            <h2 id="spotlights-heading">Company Spotlights</h2>
+            <p id="spotlight-status" role="status" aria-live="polite">Loading featured chamber members...</p>
+            <div id="spotlight-cards" class="spotlight-grid"></div>
         </section>
     </main>
     <footer>
@@ -91,13 +93,13 @@
         </div>
         <nav class="social-links" aria-label="Social links">
             <a href="https://github.com/annehutchinson407-debug/wdd231">
-                <img src="images/github.svg" alt="GitHub logo">
+                <img src="images/github.svg" alt="GitHub">
             </a>
             <a href="https://www.linkedin.com/in/anne-ferris-639a38439/">
-                <img src="images/linkedin.svg" alt="LinkedIn logo">
+                <img src="images/linkedin.svg" alt="LinkedIn">
             </a>
             <a href="https://www.youtube.com/">
-                <img src="images/youtube.svg" alt="YouTube logo">
+                <img src="images/youtube.svg" alt="YouTube">
             </a>
         </nav>
         <div class="footer-project">
