@@ -195,13 +195,16 @@ function formatForecastDate(timestamp) {
 }
 
 async function loadSpotlights() {
-    let spotlightCount = Math.floor(Math.random() * 2) + 2;
-    spotlightContainer.classList.add("spotlight-count-" + spotlightCount);
-
     try {
         const response = await fetch("data/members.json");
+        if (!response.ok) {
+            throw new Error("Member data request failed: " + response.status);
+        }
 
         const members = await response.json();
+        if (!Array.isArray(members)) {
+            throw new Error("Member data must be an array.");
+        }
 
         const eligibleMembers = [];
         for (let i = 0; i < members.length; i++) {
@@ -210,27 +213,20 @@ async function loadSpotlights() {
             }
         }
 
-        if (spotlightCount > eligibleMembers.length) {
-            spotlightCount = eligibleMembers.length;
+        if (eligibleMembers.length === 0) {
+            throw new Error("No silver or gold members are available for spotlights.");
         }
 
-        const selectedMembers = [];
-        while (selectedMembers.length < spotlightCount) {
-            const randomIndex = Math.floor(Math.random() * eligibleMembers.length);
-            const member = eligibleMembers[randomIndex];
-            let alreadySelected = false;
-
-            for (let i = 0; i < selectedMembers.length; i++) {
-                if (selectedMembers[i] === member) {
-                    alreadySelected = true;
-                }
-            }
-
-            if (alreadySelected === false) {
-                selectedMembers.push(member);
-            }
+        const spotlightCount = Math.min(Math.floor(Math.random() * 2) + 2, eligibleMembers.length);
+        for (let i = 0; i < spotlightCount; i++) {
+            const randomIndex = i + Math.floor(Math.random() * (eligibleMembers.length - i));
+            const temporaryMember = eligibleMembers[i];
+            eligibleMembers[i] = eligibleMembers[randomIndex];
+            eligibleMembers[randomIndex] = temporaryMember;
         }
+        const selectedMembers = eligibleMembers.slice(0, spotlightCount);
 
+        spotlightContainer.classList.toggle("spotlight-count-3", spotlightCount === 3);
         spotlightContainer.innerHTML = "";
         for (let i = 0; i < selectedMembers.length; i++) {
             const member = selectedMembers[i];

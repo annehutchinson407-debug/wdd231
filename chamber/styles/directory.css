@@ -114,15 +114,12 @@ main h1 {
 
 .hero {
     position: relative;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
     margin-bottom: 1.5rem;
 }
 
 .hero img {
     width: 100%;
-    max-height: 24rem;
-    object-fit: cover;
     border-radius: 0.2rem;
 }
 
@@ -227,7 +224,7 @@ main h1 {
 
 .spotlight-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
 }
 
@@ -299,10 +296,14 @@ main h1 {
 
 .business-card-details {
     display: grid;
-    grid-template-columns: 35% 1fr;
+    grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
     align-items: start;
     gap: 1rem;
     padding: 1rem;
+}
+
+.business-card-details > div {
+    min-width: 0;
 }
 
 .business-card-logo {
@@ -313,7 +314,7 @@ main h1 {
 
 .business-card-details p {
     margin: 0 0 0.75rem;
-    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .business-list {
@@ -391,33 +392,5 @@ footer p {
 @media screen and (min-width: 23.25rem) {
     .weather-forecast {
         grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 48rem) {
-    .weather-section {
-        min-height: 35rem;
-    }
-
-    .spotlight-grid {
-        min-height: 35rem;
-    }
-
-    .spotlight-grid.spotlight-count-3 {
-        min-height: 54rem;
-    }
-}
-
-@media screen and (max-width: 24rem) {
-    .weather-section {
-        min-height: 42rem;
-    }
-
-    .spotlight-grid {
-        min-height: 42rem;
-    }
-
-    .spotlight-grid.spotlight-count-3 {
-        min-height: 62rem;
     }
 }
