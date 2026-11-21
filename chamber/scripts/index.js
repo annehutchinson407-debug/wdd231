@@ -1,9 +1,24 @@
-const OPENWEATHERMAP_API_KEY = window.OPENWEATHERMAP_API_KEY || "";
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector("#primary-navigation");
+const currentYearElement = document.querySelector("#currentYear");
+const lastModifiedElement = document.querySelector("#lastModified");
+const weatherStatus = document.querySelector("#weather-status");
+const weatherRetryButton = document.querySelector("#weather-retry");
+const currentWeatherContainer = document.querySelector("#weather-current");
+const currentTemp = document.querySelector("#weather-temperature");
+const captionDesc = document.querySelector("#weather-description");
+const forecastContainer = document.querySelector("#weather-forecast-container");
+const forecastList = document.querySelector("#weather-forecast");
+
+const OPENWEATHERMAP_API_KEY = "";
+const haikuLocation = {
+    latitude: 20.921,
+    longitude: -156.305
+};
+const url = `https://api.openweathermap.org/data/2.5/weather?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
 
 document.documentElement.classList.add("js");
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navigation = document.querySelector("#primary-navigation");
 if (menuToggle && navigation) {
     menuToggle.addEventListener("click", () => {
         const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
@@ -12,12 +27,10 @@ if (menuToggle && navigation) {
     });
 }
 
-const currentYearElement = document.querySelector("#currentYear");
 if (currentYearElement) {
     currentYearElement.textContent = String(new Date().getFullYear());
 }
 
-const lastModifiedElement = document.querySelector("#lastModified");
 if (lastModifiedElement) {
     const lastModifiedDate = new Date(document.lastModified);
     lastModifiedElement.textContent = Number.isNaN(lastModifiedDate.getTime())
@@ -25,47 +38,38 @@ if (lastModifiedElement) {
         : lastModifiedDate.toLocaleString();
 }
 
-const weatherStatus = document.querySelector("#weather-status");
-const weatherRetryButton = document.querySelector("#weather-retry");
-const currentWeatherContainer = document.querySelector("#weather-current");
-const forecastContainer = document.querySelector("#weather-forecast-container");
-const forecastList = document.querySelector("#weather-forecast");
-
-const haikuLocation = {
-    latitude: 20.921,
-    longitude: -156.305
-};
-
 weatherRetryButton.addEventListener("click", loadWeather);
 loadWeather();
 
 async function loadWeather() {
-    const apiKey = OPENWEATHERMAP_API_KEY.trim();
-    if (!apiKey) {
-        showWeatherError(
-            "Configure your OpenWeatherMap API key in scripts/weather-config.js.",
-            false
-        );
-        return;
-    }
-
     weatherStatus.textContent = "Loading current weather and forecast...";
     weatherRetryButton.hidden = true;
     currentWeatherContainer.hidden = true;
     forecastContainer.hidden = true;
 
-    const location = `lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}`;
-    const apiBase = "https://api.openweathermap.org/data/2.5";
+    await apiFetch();
+}
+
+async function apiFetch() {
+    if (!OPENWEATHERMAP_API_KEY.trim()) {
+        showWeatherError("Add a restricted OpenWeatherMap key to OPENWEATHERMAP_API_KEY in scripts/index.js.", false);
+        return;
+    }
 
     try {
-        const [current, forecast] = await Promise.all([
-            fetchWeather(`${apiBase}/weather?${location}&units=imperial&appid=${encodeURIComponent(apiKey)}`),
-            fetchWeather(`${apiBase}/forecast?${location}&units=imperial&appid=${encodeURIComponent(apiKey)}`)
-        ]);
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
 
-        renderCurrentWeather(current);
-        renderForecast(forecast, current.dt);
-        weatherStatus.textContent = "Weather data for Haiku, Hawaii.";
+        const data = await response.json();
+        console.log(data);
+        displayResults(data);
+
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
+        const forecast = await fetchWeather(forecastUrl);
+        renderForecast(forecast, data.dt);
+        weatherStatus.textContent = "Weather data for Haiku, Hawaii, USA.";
     } catch (error) {
         console.error("Unable to load Haiku weather from OpenWeatherMap.", error);
         showWeatherError("Weather data could not be loaded. Check your API key and connection, then retry.", true);
@@ -74,23 +78,21 @@ async function loadWeather() {
 
 async function fetchWeather(url) {
     const response = await fetch(url);
-    const data = await response.json();
     if (!response.ok) {
-        const message = typeof data.message === "string" ? `: ${data.message}` : "";
-        throw new Error(`OpenWeatherMap request failed (${response.status})${message}`);
+        throw new Error(await response.text());
     }
-    return data;
+    return response.json();
 }
 
-function renderCurrentWeather(data) {
+function displayResults(data) {
     const temperature = data.main?.temp;
     const description = data.weather?.[0]?.description;
     if (!Number.isFinite(temperature) || typeof description !== "string") {
         throw new Error("Current weather response is missing temperature or description.");
     }
 
-    document.querySelector("#weather-temperature").textContent = `${Math.round(temperature)}`;
-    document.querySelector("#weather-description").textContent = description;
+    currentTemp.textContent = `${Math.round(temperature)}`;
+    captionDesc.textContent = description;
     currentWeatherContainer.hidden = false;
 }
 
