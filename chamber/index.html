@@ -16,6 +16,7 @@
         content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
     <link rel="preload" href="data/members.json" as="fetch" type="application/json" crossorigin>
     <link rel="preload" href="images/haiku-harvest.svg" as="image" fetchpriority="high">
+    <script src="scripts/weather-key.js" defer></script>
     <script src="scripts/weather-config.js" defer></script>
     <script src="scripts/index.js" defer></script>
     <link rel="stylesheet" href="styles/directory-normalize.css">
@@ -24,11 +25,8 @@
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional"
-        rel="stylesheet" media="print" onload="this.media='all'">
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional">
+    <link id="google-fonts" rel="stylesheet" media="print"
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional">
 </head>
 
 <body>
@@ -60,25 +58,25 @@
             <h1>Current Events</h1>
         </section>
         <section class="weather-section" aria-labelledby="weather-heading">
-            <h1 id="weather-heading">Weather in Haiku</h1>
+            <h2 id="weather-heading">Weather in Haiku</h2>
             <img src="images/weather.svg" alt="" width="48" height="48">
             <p id="weather-status" role="status" aria-live="polite">Loading current weather and forecast...</p>
             <button id="weather-retry" type="button" hidden>Retry</button>
             <div id="weather-current" class="weather-current" hidden>
                 <h2>Current Conditions</h2>
                 <figure class="weather-current-figure">
-                    <img id="weather-icon" class="weather-icon" src="" alt="weather icon" width="100" height="100">
+                    <img id="weather-icon" class="weather-icon" alt="weather icon" width="100" height="100">
                     <figcaption id="weather-description"></figcaption>
                 </figure>
                 <p class="weather-temperature"><span id="weather-temperature"></span> °F</p>
             </div>
             <div id="weather-forecast-container" hidden>
-                <h2>3-Day Temperature Forecast</h2>
+                <h3>3-Day Temperature Forecast</h3>
                 <ol id="weather-forecast" class="weather-forecast"></ol>
             </div>
         </section>
         <section>
-            <h1>Company Spotlights</h1>
+            <h2>Company Spotlights</h2>
         </section>
     </main>
     <footer>
