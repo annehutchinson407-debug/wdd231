@@ -4,8 +4,12 @@ const currentYearElement = document.querySelector("#currentYear");
 const lastModifiedElement = document.querySelector("#lastModified");
 const weatherStatus = document.querySelector("#weather-status");
 const weatherRetryButton = document.querySelector("#weather-retry");
+const currentWeatherContainer = document.querySelector("#weather-current");
+const currentTemperature = document.querySelector("#weather-temperature");
+const currentDescription = document.querySelector("#weather-description");
 const forecastContainer = document.querySelector("#weather-forecast-container");
 const forecastList = document.querySelector("#weather-forecast");
+const googleFontsStylesheet = document.querySelector("#google-fonts");
 
 const OPENWEATHERMAP_API_KEY = window.OPENWEATHERMAP_API_KEY || "";
 const haikuLocation = {
@@ -14,6 +18,17 @@ const haikuLocation = {
 };
 
 document.documentElement.classList.add("js");
+
+if (googleFontsStylesheet) {
+    const enableGoogleFonts = () => {
+        googleFontsStylesheet.media = "all";
+    };
+
+    googleFontsStylesheet.addEventListener("load", enableGoogleFonts, { once: true });
+    if (googleFontsStylesheet.sheet) {
+        enableGoogleFonts();
+    }
+}
 
 if (menuToggle && navigation) {
     menuToggle.addEventListener("click", () => {
@@ -38,8 +53,9 @@ weatherRetryButton.addEventListener("click", loadWeather);
 loadWeather();
 
 async function loadWeather() {
-    weatherStatus.textContent = "Loading the 3-day forecast...";
+    weatherStatus.textContent = "Loading current conditions and the 3-day forecast...";
     weatherRetryButton.hidden = true;
+    currentWeatherContainer.hidden = true;
     forecastContainer.hidden = true;
 
     await apiFetch();
@@ -52,8 +68,13 @@ async function apiFetch() {
     }
 
     try {
+        const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
         const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${haikuLocation.latitude}&lon=${haikuLocation.longitude}&units=imperial&appid=${encodeURIComponent(OPENWEATHERMAP_API_KEY)}`;
-        const forecast = await fetchWeather(forecastUrl);
+        const [current, forecast] = await Promise.all([
+            fetchWeather(currentUrl),
+            fetchWeather(forecastUrl)
+        ]);
+        renderCurrentWeather(current);
         renderForecast(forecast, Date.now() / 1000);
         weatherStatus.textContent = "Weather data for Haiku, Hawaii, USA.";
     } catch (error) {
@@ -68,6 +89,18 @@ async function fetchWeather(url) {
         throw new Error(await response.text());
     }
     return response.json();
+}
+
+function renderCurrentWeather(data) {
+    const temperature = data.main?.temp;
+    const description = data.weather?.[0]?.description;
+    if (!Number.isFinite(temperature) || typeof description !== "string") {
+        throw new Error("Current weather response is missing temperature or description.");
+    }
+
+    currentTemperature.textContent = `${Math.round(temperature)}`;
+    currentDescription.textContent = description;
+    currentWeatherContainer.hidden = false;
 }
 
 function renderForecast(data, currentTimestamp) {

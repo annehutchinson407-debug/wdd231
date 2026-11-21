@@ -5,6 +5,18 @@ document.querySelector("#lastModified").textContent = document.lastModified;
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#primary-navigation");
+const googleFontsStylesheet = document.querySelector("#google-fonts");
+
+if (googleFontsStylesheet) {
+    const enableGoogleFonts = () => {
+        googleFontsStylesheet.media = "all";
+    };
+
+    googleFontsStylesheet.addEventListener("load", enableGoogleFonts, { once: true });
+    if (googleFontsStylesheet.sheet) {
+        enableGoogleFonts();
+    }
+}
 
 menuToggle.addEventListener("click", () => {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
