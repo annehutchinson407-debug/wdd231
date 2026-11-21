@@ -5,6 +5,7 @@ const lastModifiedElement = document.querySelector("#lastModified");
 const weatherStatus = document.querySelector("#weather-status");
 const currentTemperature = document.querySelector("#weather-temperature");
 const currentDescription = document.querySelector("#weather-description");
+const weatherIcon = document.querySelector("#weather-icon");
 const forecastList = document.querySelector("#weather-forecast");
 const spotlightContainer = document.querySelector("#spotlight-cards");
 const spotlightStatus = document.querySelector("#spotlight-status");
@@ -45,22 +46,27 @@ if (spotlightContainer && spotlightStatus) {
 async function loadWeather() {
     weatherStatus.textContent = "Loading weather...";
 
-    try {
-        const hasKey = window.OPENWEATHERMAP_API_KEY &&
-            window.OPENWEATHERMAP_API_KEY.trim() !== "";
-        const isLocalPage = location.protocol === "file:" ||
-            location.hostname === "localhost" ||
-            location.hostname === "127.0.0.1";
+    const hasKey = window.OPENWEATHERMAP_API_KEY &&
+        window.OPENWEATHERMAP_API_KEY.trim() !== "";
+    const isLocalPage = location.protocol === "file:" ||
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
 
-        if (!hasKey && isLocalPage) {
+    if (!hasKey && isLocalPage) {
+        try {
             await loadLocalWeatherConfig();
+        } catch (error) {
+            console.error("Unable to load the local weather config.", error);
         }
-
-        await apiFetch();
-    } catch (error) {
-        console.error("Unable to load the local weather config.", error);
-        clearWeatherStatus();
     }
+
+    const apiKey = window.OPENWEATHERMAP_API_KEY || "";
+    if (!apiKey.trim()) {
+        weatherStatus.textContent = "Weather unavailable: OpenWeatherMap API key is not configured.";
+        return;
+    }
+
+    await apiFetch(apiKey);
 }
 
 function loadLocalWeatherConfig() {
@@ -75,42 +81,46 @@ function loadLocalWeatherConfig() {
     });
 }
 
-async function apiFetch() {
-    const apiKey = window.OPENWEATHERMAP_API_KEY || "";
-    if (!apiKey.trim()) {
-        clearWeatherStatus();
-        return;
-    }
-
+async function apiFetch(apiKey) {
     try {
-        const currentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" +
-            haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
-            "&units=imperial&appid=" + apiKey;
-        const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-            haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
-            "&units=imperial&appid=" + apiKey;
-        const current = await fetchWeather(currentUrl);
-        const forecast = await fetchWeather(forecastUrl);
+        const parameters = new URLSearchParams({
+            lat: haikuLocation.latitude,
+            lon: haikuLocation.longitude,
+            units: "imperial",
+            appid: apiKey
+        });
+        const currentUrl = "https://api.openweathermap.org/data/2.5/weather?" + parameters;
+        const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?" + parameters;
+        const results = await Promise.all([
+            fetchWeather(currentUrl),
+            fetchWeather(forecastUrl)
+        ]);
+        const current = results[0];
+        const forecast = results[1];
         renderCurrentWeather(current);
         renderForecast(forecast, Date.now() / 1000);
         weatherStatus.textContent = "Weather data for Haiku, Hawaii, USA.";
     } catch (error) {
         console.error("Unable to load Haiku weather from OpenWeatherMap.", error);
-        clearWeatherStatus();
+        weatherStatus.textContent = "Weather unavailable: " + error.message;
     }
 }
 
 async function fetchWeather(url) {
     const response = await fetch(url);
+    const data = await response.json();
     if (!response.ok) {
-        throw new Error("Weather request failed");
+        const detail = data && typeof data.message === "string" ? ": " + data.message : "";
+        throw new Error("OpenWeatherMap request failed (" + response.status + ")" + detail);
     }
-    return response.json();
+    return data;
 }
 
 function renderCurrentWeather(data) {
     currentTemperature.textContent = Math.round(data.main.temp);
     currentDescription.textContent = data.weather[0].description;
+    weatherIcon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+    weatherIcon.alt = data.weather[0].description;
 }
 
 function renderForecast(data, currentTimestamp) {
@@ -182,10 +192,6 @@ function formatForecastDate(timestamp) {
         day: "numeric",
         timeZone: "Pacific/Honolulu"
     });
-}
-
-function clearWeatherStatus() {
-    weatherStatus.textContent = "";
 }
 
 async function loadSpotlights() {
