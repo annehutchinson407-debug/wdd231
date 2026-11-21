@@ -152,6 +152,70 @@ main h1 {
     outline-offset: 3px;
 }
 
+.weather-section {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-light);
+}
+
+.weather-section h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+}
+
+.weather-current {
+    margin-bottom: 1.5rem;
+}
+
+.weather-temperature {
+    margin: 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#weather-description {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.weather-forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.weather-forecast li {
+    display: grid;
+    gap: 0.4rem;
+    padding: 0.9rem;
+    border-radius: 0.35rem;
+    background-color: var(--color-very-light);
+}
+
+.weather-forecast strong {
+    font-size: 1.05rem;
+}
+
+.weather-section button {
+    min-height: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-very-light);
+    font: inherit;
+    cursor: pointer;
+}
+
+.weather-section button:focus-visible {
+    outline: 3px solid var(--color-dark);
+    outline-offset: 2px;
+}
+
 .directory-controls {
     display: flex;
     justify-content: center;

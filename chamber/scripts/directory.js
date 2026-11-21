@@ -17,8 +17,10 @@ const directoryStatus = document.querySelector("#directory-status");
 const gridViewButton = document.querySelector("#grid-view");
 const listViewButton = document.querySelector("#list-view");
 
-gridViewButton.addEventListener("click", () => setDirectoryView("grid"));
-listViewButton.addEventListener("click", () => setDirectoryView("list"));
+if (gridViewButton && listViewButton) {
+    gridViewButton.addEventListener("click", () => setDirectoryView("grid"));
+    listViewButton.addEventListener("click", () => setDirectoryView("list"));
+}
 
 function setDirectoryView(view) {
     const isGrid = view === "grid";
@@ -99,4 +101,6 @@ async function loadMembers() {
     }
 }
 
-loadMembers();
+if (membersContainer && directoryStatus) {
+    loadMembers();
+}
