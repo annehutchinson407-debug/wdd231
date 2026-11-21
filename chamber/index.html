@@ -14,9 +14,7 @@
     <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/">
     <meta property="og:image"
         content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
-    <script src="scripts/weather-config.js" defer></script>
-    <script src="scripts/weather.js" defer></script>
-    <script src="scripts/index.js" defer></script>
+    <script type="module" src="scripts/index.js"></script>
     <link rel="stylesheet" href="styles/directory-normalize.css">
     <link rel="stylesheet" href="styles/directory.css">
     <link rel="stylesheet" href="styles/directory-larger.css">
@@ -54,33 +52,39 @@
             <img src="images/haiku-hawaii.jpg" alt="View of Haiku, Hawaii" width="840" height="630">
             <a class="call-to-action" href="join.html">Join the Chamber</a>
         </div>
-        <section>
-            <h1>Current Events</h1>
-            <p>Connect with Haiku businesses, discover community events, and find opportunities to support our local
-                economy.</p>
-        </section>
-        <section class="weather-section">
-            <h2>Weather in Haiku</h2>
-            <p id="weather-status"></p>
-            <div id="weather-current" class="weather-current">
-                <h2>Current Conditions</h2>
-                <figure class="weather-current-figure">
-                    <img id="weather-icon" class="weather-icon" alt="weather icon" src="images/weather.svg" width="100"
-                        height="100">
-                    <figcaption id="weather-description">--</figcaption>
-                </figure>
-                <p class="weather-temperature"><span id="weather-temperature">--</span> °F</p>
-            </div>
-            <div id="weather-forecast-container">
-                <h3>3-Day Temperature Forecast</h3>
-                <ol id="weather-forecast" class="weather-forecast"></ol>
-            </div>
-        </section>
-        <section class="spotlight-section">
-            <h2>Company Spotlights</h2>
-            <p id="spotlight-status">Loading featured chamber members...</p>
-            <div id="spotlight-cards" class="spotlight-grid"></div>
-        </section>
+        <h1>Welcome to Haiku</h1>
+        <div class="home-content-grid">
+            <section class="home-events" aria-labelledby="events-heading">
+                <h2 id="events-heading">Community Events</h2>
+                <article class="event-card">
+                    <h3>Haiku Business Community</h3>
+                    <p><time datetime="2026-12-10T17:30">December 10 · 5:30 p.m.</time></p>
+                    <p>Meet local business owners, make new connections, and celebrate the Haiku community.</p>
+                </article>
+            </section>
+            <section class="weather-section" aria-labelledby="weather-heading">
+                <h2 id="weather-heading">Weather in Haiku</h2>
+                <p id="weather-status" role="status" aria-live="polite">Loading weather...</p>
+                <div id="weather-current" class="weather-current">
+                    <h3>Current Conditions</h3>
+                    <figure class="weather-current-figure">
+                        <img id="weather-icon" class="weather-icon" src="images/weather.svg" alt="Weather icon"
+                            width="100" height="100">
+                        <figcaption id="weather-description">--</figcaption>
+                    </figure>
+                    <p class="weather-temperature"><span id="weather-temperature">--</span> °F</p>
+                </div>
+                <div id="weather-forecast-container">
+                    <h3>3-Day Temperature Forecast</h3>
+                    <ol id="weather-forecast" class="weather-forecast"></ol>
+                </div>
+            </section>
+            <section class="spotlight-section" aria-labelledby="spotlight-heading">
+                <h2 id="spotlight-heading">Member Spotlights</h2>
+                <p id="spotlight-status" role="status" aria-live="polite">Loading featured chamber members...</p>
+                <div id="spotlight-cards" class="spotlight-grid"></div>
+            </section>
+        </div>
     </main>
     <footer>
         <div class="footer-contact">
