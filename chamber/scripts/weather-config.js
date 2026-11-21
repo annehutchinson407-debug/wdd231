@@ -1,0 +1,1 @@
+window.OPENWEATHERMAP_API_KEY = "";
