@@ -164,21 +164,6 @@ main h1 {
     font-size: 1.25rem;
 }
 
-.weather-current {
-    margin-bottom: 1.5rem;
-}
-
-.weather-temperature {
-    margin: 0.5rem 0;
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-#weather-description {
-    margin: 0;
-    text-transform: capitalize;
-}
-
 .weather-forecast {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
