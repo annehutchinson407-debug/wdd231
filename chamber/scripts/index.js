@@ -10,7 +10,7 @@ const captionDesc = document.querySelector("#weather-description");
 const forecastContainer = document.querySelector("#weather-forecast-container");
 const forecastList = document.querySelector("#weather-forecast");
 
-const OPENWEATHERMAP_API_KEY = "";
+const OPENWEATHERMAP_API_KEY = window.OPENWEATHERMAP_API_KEY || "694aae0e62c761147c57d4e95c4a60a2";
 const haikuLocation = {
     latitude: 20.921,
     longitude: -156.305
@@ -52,7 +52,7 @@ async function loadWeather() {
 
 async function apiFetch() {
     if (!OPENWEATHERMAP_API_KEY.trim()) {
-        showWeatherError("Add a restricted OpenWeatherMap key to OPENWEATHERMAP_API_KEY in scripts/index.js.", false);
+
         return;
     }
 
