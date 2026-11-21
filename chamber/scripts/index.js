@@ -3,17 +3,12 @@ const navigation = document.querySelector("#primary-navigation");
 const currentYearElement = document.querySelector("#currentYear");
 const lastModifiedElement = document.querySelector("#lastModified");
 const weatherStatus = document.querySelector("#weather-status");
-const weatherRetryButton = document.querySelector("#weather-retry");
-const currentWeatherContainer = document.querySelector("#weather-current");
 const currentTemperature = document.querySelector("#weather-temperature");
 const currentDescription = document.querySelector("#weather-description");
-const forecastContainer = document.querySelector("#weather-forecast-container");
 const forecastList = document.querySelector("#weather-forecast");
 const spotlightContainer = document.querySelector("#spotlight-cards");
 const spotlightStatus = document.querySelector("#spotlight-status");
-const googleFontsStylesheet = document.querySelector("#google-fonts");
 
-const OPENWEATHERMAP_API_KEY = window.OPENWEATHERMAP_API_KEY || "";
 const haikuLocation = {
     latitude: 20.921,
     longitude: -156.305
@@ -41,7 +36,6 @@ if (lastModifiedElement) {
     lastModifiedElement.textContent = document.lastModified;
 }
 
-weatherRetryButton.addEventListener("click", loadWeather);
 loadWeather();
 
 if (spotlightContainer && spotlightStatus) {
@@ -49,27 +43,52 @@ if (spotlightContainer && spotlightStatus) {
 }
 
 async function loadWeather() {
-    weatherStatus.textContent = "Loading current conditions and the 3-day forecast...";
-    weatherRetryButton.hidden = true;
-    currentWeatherContainer.hidden = true;
-    forecastContainer.hidden = true;
+    weatherStatus.textContent = "Loading weather...";
 
-    await apiFetch();
+    try {
+        const hasKey = window.OPENWEATHERMAP_API_KEY &&
+            window.OPENWEATHERMAP_API_KEY.trim() !== "";
+        const isLocalPage = location.protocol === "file:" ||
+            location.hostname === "localhost" ||
+            location.hostname === "127.0.0.1";
+
+        if (!hasKey && isLocalPage) {
+            await loadLocalWeatherConfig();
+        }
+
+        await apiFetch();
+    } catch (error) {
+        console.error("Unable to load the local weather config.", error);
+        clearWeatherStatus();
+    }
+}
+
+function loadLocalWeatherConfig() {
+    return new Promise(function (resolve, reject) {
+        const configScript = document.createElement("script");
+        configScript.src = "scripts/weather-config.local.js";
+        configScript.addEventListener("load", resolve, { once: true });
+        configScript.addEventListener("error", function () {
+            reject(new Error("Local weather config file could not be loaded."));
+        }, { once: true });
+        document.head.appendChild(configScript);
+    });
 }
 
 async function apiFetch() {
-    if (!OPENWEATHERMAP_API_KEY.trim()) {
-
+    const apiKey = window.OPENWEATHERMAP_API_KEY || "";
+    if (!apiKey.trim()) {
+        clearWeatherStatus();
         return;
     }
 
     try {
         const currentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" +
             haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
-            "&units=imperial&appid=" + OPENWEATHERMAP_API_KEY;
+            "&units=imperial&appid=" + apiKey;
         const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" +
             haikuLocation.latitude + "&lon=" + haikuLocation.longitude +
-            "&units=imperial&appid=" + OPENWEATHERMAP_API_KEY;
+            "&units=imperial&appid=" + apiKey;
         const current = await fetchWeather(currentUrl);
         const forecast = await fetchWeather(forecastUrl);
         renderCurrentWeather(current);
@@ -77,7 +96,7 @@ async function apiFetch() {
         weatherStatus.textContent = "Weather data for Haiku, Hawaii, USA.";
     } catch (error) {
         console.error("Unable to load Haiku weather from OpenWeatherMap.", error);
-        showWeatherError("Weather data could not be loaded. Check your API key and connection, then retry.", true);
+        clearWeatherStatus();
     }
 }
 
@@ -92,7 +111,6 @@ async function fetchWeather(url) {
 function renderCurrentWeather(data) {
     currentTemperature.textContent = Math.round(data.main.temp);
     currentDescription.textContent = data.weather[0].description;
-    currentWeatherContainer.hidden = false;
 }
 
 function renderForecast(data, currentTimestamp) {
@@ -149,7 +167,6 @@ function renderForecast(data, currentTimestamp) {
         item.appendChild(low);
         forecastList.appendChild(item);
     }
-    forecastContainer.hidden = false;
 }
 
 function getHaikuDateKey(timestamp) {
@@ -167,17 +184,16 @@ function formatForecastDate(timestamp) {
     });
 }
 
-function showWeatherError(message, canRetry) {
-    weatherStatus.textContent = message;
-    weatherRetryButton.hidden = !canRetry;
+function clearWeatherStatus() {
+    weatherStatus.textContent = "";
 }
 
 async function loadSpotlights() {
+    let spotlightCount = Math.floor(Math.random() * 2) + 2;
+    spotlightContainer.classList.add("spotlight-count-" + spotlightCount);
+
     try {
         const response = await fetch("data/members.json");
-        if (!response.ok) {
-            throw new Error("Member request failed");
-        }
 
         const members = await response.json();
 
@@ -188,12 +204,6 @@ async function loadSpotlights() {
             }
         }
 
-        if (eligibleMembers.length < 2) {
-            spotlightStatus.textContent = "Not enough silver or gold members.";
-            return;
-        }
-
-        let spotlightCount = Math.floor(Math.random() * 2) + 2;
         if (spotlightCount > eligibleMembers.length) {
             spotlightCount = eligibleMembers.length;
         }

@@ -1,8 +1,12 @@
 @media screen and (min-width: 48rem) {
     header {
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: 1fr auto;
         gap: 1.5rem;
         padding-block: 1rem;
+    }
+
+    main h1 {
+        font-size: 2rem;
     }
 
     .js .menu-toggle {
@@ -27,8 +31,12 @@
     }
 
     .business-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.25rem;
+    }
+
+    .weather-forecast {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .spotlight-grid {
@@ -36,12 +44,24 @@
     }
 
     footer {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         align-items: center;
         gap: 2rem;
     }
 
+    @media screen and (min-width: 56.25rem) {
+        main h1 {
+            font-size: 2.25rem;
+        }
+    }
+
     .social-links {
         justify-content: center;
+    }
+}
+
+@media screen and (min-width: 56rem) {
+    main h1 {
+        font-size: 2rem;
     }
 }

@@ -14,8 +14,6 @@
     <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/">
     <meta property="og:image"
         content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
-    <link rel="preload" href="data/members.json" as="fetch" type="application/json" crossorigin>
-    <link rel="preload" href="images/haiku-harvest.svg" as="image" fetchpriority="high">
     <script src="scripts/weather-config.js" defer></script>
     <script src="scripts/index.js" defer></script>
     <link rel="stylesheet" href="styles/directory-normalize.css">
@@ -28,11 +26,10 @@
         href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional"
         id="google-fonts" rel="stylesheet" media="print">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=optional">
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&amp;family=Inter:wght@400;700&amp;display=swap">
 </head>
 
 <body>
-
     <header>
         <a class="site-brand" href="../index.html">
             <img src="images/truck.svg" alt="">
@@ -53,33 +50,36 @@
     </header>
     <main>
         <div class="hero">
-            <img src="images/haiku-hawaii.jpg" alt="View of Haiku, Hawaii">
+            <img src="images/haiku-hawaii.jpg" alt="View of Haiku, Hawaii" width="840" height="630">
             <a class="call-to-action" href="join.html">Join the Chamber</a>
         </div>
         <section>
             <h1>Current Events</h1>
+            <p>lorem ipsum dolor sit amet consectetur adipiscing elit in fuga dolorem ullamco dolor et excepteur ut
+                tempor deserunt voluptas vero est provident voluptate lorem nihil id eum laborum officia id anim officia
+                dolorum voluptas excepteur fuga non officia voluptas repellendus nihil autem sed accusamus labore et
+                placeat magna quis deserunt</p>
         </section>
-        <section class="weather-section" aria-labelledby="weather-heading">
-            <h2 id="weather-heading">Weather in Haiku</h2>
-            <p id="weather-status" role="status" aria-live="polite">Loading current weather and forecast...</p>
-            <button id="weather-retry" type="button" hidden>Retry</button>
-            <div id="weather-current" class="weather-current" hidden>
+        <section class="weather-section">
+            <h2>Weather in Haiku</h2>
+            <p id="weather-status">Loading weather...</p>
+            <div id="weather-current" class="weather-current">
                 <h2>Current Conditions</h2>
                 <figure class="weather-current-figure">
                     <img id="weather-icon" class="weather-icon" alt="weather icon" src="images/weather.svg" width="100"
                         height="100">
-                    <figcaption id="weather-description"></figcaption>
+                    <figcaption id="weather-description">--</figcaption>
                 </figure>
-                <p class="weather-temperature"><span id="weather-temperature"></span> °F</p>
+                <p class="weather-temperature"><span id="weather-temperature">--</span> °F</p>
             </div>
-            <div id="weather-forecast-container" hidden>
+            <div id="weather-forecast-container">
                 <h3>3-Day Temperature Forecast</h3>
                 <ol id="weather-forecast" class="weather-forecast"></ol>
             </div>
         </section>
-        <section class="spotlight-section" aria-labelledby="spotlights-heading">
-            <h2 id="spotlights-heading">Company Spotlights</h2>
-            <p id="spotlight-status" role="status" aria-live="polite">Loading featured chamber members...</p>
+        <section class="spotlight-section">
+            <h2>Company Spotlights</h2>
+            <p id="spotlight-status">Loading featured chamber members...</p>
             <div id="spotlight-cards" class="spotlight-grid"></div>
         </section>
     </main>

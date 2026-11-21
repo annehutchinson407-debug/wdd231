@@ -15,7 +15,7 @@ body {
 
 header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem max(1rem, calc((100% - 1200px) / 2));
@@ -100,7 +100,8 @@ nav a[aria-current="page"] {
 }
 
 main {
-    width: min(100% - 2rem, 1200px);
+    width: calc(100% - 2rem);
+    max-width: 1200px;
     min-height: 20rem;
     margin: 0 auto;
     padding: 1.5rem 0 2rem;
@@ -108,7 +109,7 @@ main {
 
 main h1 {
     margin: 0 0 1.5rem;
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-size: 1.75rem;
 }
 
 .hero {
@@ -189,7 +190,7 @@ main h1 {
 
 .weather-forecast {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.75rem;
     margin: 0;
     padding: 0;
@@ -271,7 +272,7 @@ main h1 {
 
 .business-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
 }
 
@@ -298,7 +299,7 @@ main h1 {
 
 .business-card-details {
     display: grid;
-    grid-template-columns: minmax(5rem, 35%) minmax(0, 1fr);
+    grid-template-columns: 35% 1fr;
     align-items: start;
     gap: 1rem;
     padding: 1rem;
@@ -312,11 +313,11 @@ main h1 {
 
 .business-card-details p {
     margin: 0 0 0.75rem;
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
 }
 
 .business-list {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
 }
 
 .business-list .business-card {
@@ -339,7 +340,7 @@ main h1 {
 
 footer {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 1.5rem max(1rem, calc((100% - 1200px) / 2));
     background-color: var(--color-light);
@@ -385,4 +386,38 @@ footer p {
 .js nav.is-open {
     display: flex;
     color: var(--color-very-light);
+}
+
+@media screen and (min-width: 23.25rem) {
+    .weather-forecast {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 48rem) {
+    .weather-section {
+        min-height: 35rem;
+    }
+
+    .spotlight-grid {
+        min-height: 35rem;
+    }
+
+    .spotlight-grid.spotlight-count-3 {
+        min-height: 54rem;
+    }
+}
+
+@media screen and (max-width: 24rem) {
+    .weather-section {
+        min-height: 42rem;
+    }
+
+    .spotlight-grid {
+        min-height: 42rem;
+    }
+
+    .spotlight-grid.spotlight-count-3 {
+        min-height: 62rem;
+    }
 }
