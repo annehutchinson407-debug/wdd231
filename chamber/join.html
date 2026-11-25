@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Haiku Chamber of Commerce</title>
+    <meta name="author" content="Anne Ferris">
+    <meta name="description" content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
+    <meta property="og:title" content="Join the Haiku Chamber of Commerce">
+    <meta property="og:description" content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
+    <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/chamber/join.html">
+    <meta property="og:image" content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <script type="module" src="scripts/join.js"></script>
+    <link rel="stylesheet" href="styles/directory-normalize.css">
+    <link rel="stylesheet" href="styles/directory.css">
+    <link rel="stylesheet" href="styles/directory-larger.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=optional"
+        id="google-fonts" rel="stylesheet" media="print">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=swap">
+</head>
+
+<body>
+    <header>
+        <a class="site-brand" href="../index.html">
+            <img src="images/truck.svg" alt="">
+            <span>Haiku Chamber of Commerce</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
+            aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="primary-navigation">
+            <a href="index.html">Home</a>
+            <a href="directory.html">Directory</a>
+            <a href="join.html" aria-current="page">Join</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <form>
+                <label>First name
+                    <input type="text" id="first-name" name="firstName" title="Enter your first name" required>
+                </label>
+                <label for="last-name">Last name
+                    <input type="text" id="last-name" name="lastName" title="Enter your last name" required>
+                </label>
+                <label for="organization-title">Organizational title
+                    <input type="text" id="organization-title" name="organizationTitle"
+                        title="Use at least seven letters, spaces, or hyphens">
+                </label>
+                <label for="email">Email address
+                    <input type="email" id="email" name="email" title="Enter a valid email address" required>
+                </label>
+                <label for="phone">Mobile phone number
+                    <input type="tel" id="phone" name="phone" title="Enter your mobile phone number" required>
+                </label>
+                <label for="organization">Business or organization name
+                    <input type="text" id="organization" name="organization"
+                        title="Enter your business or organization name" required>
+                </label>
+                <label for="membership">Membership level
+                    <select id="membership" name="membership" title="Choose a membership level" required>
+                        <option>Select a membership</option>
+                        <option>NP Membership (no fee)</option>
+                        <option>Bronze Membership</option>
+                        <option>Silver Membership</option>
+                        <option>Gold Membership</option>
+                    </select>
+                </label>
+                <label for="description">Vendor description
+                    <textarea id="description" name="description" title="Describe your business or organization"
+                        rows="5"></textarea>
+                </label>
+                <input type="hidden" id="timestamp" name="timestamp">
+                <input class="join-submit" type="submit" value="Submit membership application">
+            </form>
+
+            <aside class="membership-section" aria-labelledby="membership-heading">
+                <h2 id="membership-heading">Membership levels</h2>
+                <div class="membership-cards">
+                    <article class="membership-card membership-np">
+                        <h3>NP Membership</h3>
+                        <p>For nonprofit organizations</p>
+                    </article>
+                    <article class="membership-card membership-bronze">
+                        <h3>Bronze Membership</h3>
+                        <p>Build your local connections</p>
+                    </article>
+                    <article class="membership-card membership-silver">
+                        <h3>Silver Membership</h3>
+                        <p>Grow your reach and visibility</p>
+                    </article>
+                    <article class="membership-card membership-gold">
+                        <h3>Gold Membership</h3>
+                        <p>Make the most with every opportunity</p>
+                    </article>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            <p class="footer-name">Haiku Chamber of Commerce</p>
+            <p>1234 Roadside Avenue</p>
+            <p>96 Hawaii, USA</p>
+            <p>totallyrealinfo@haikucc.org</p>
+            <p>+1 808 101-1010</p>
+        </div>
+        <nav class="social-links" aria-label="Social links">
+            <a href="https://github.com/annehutchinson407-debug/wdd231" aria-label="GitHub">
+                <img src="images/github.svg" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/" aria-label="LinkedIn">
+                <img src="images/linkedin.svg" alt="">
+            </a>
+            <a href="https://www.youtube.com/" aria-label="YouTube">
+                <img src="images/youtube.svg" alt="">
+            </a>
+        </nav>
+        <div class="footer-project">
+            <p>WDD231 Class Project</p>
+            <p>Anne Ferris</p>
+            <p>©<span id="currentYear"></span> Haiku Chamber of Commerce</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+</body>
+
+</html>
