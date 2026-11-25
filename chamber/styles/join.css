@@ -2,6 +2,7 @@
     --join-form-border-color: #627783;
     --join-card-border-color: #b5c7d0;
     --join-card-shadow-color: #0000001a;
+    --join-card-shadow-hover: #00000033;
     --join-bronze-color: #9c5d32;
     --join-silver-color: #71818a;
     --join-gold-color: #b68b00;
@@ -72,6 +73,22 @@
     border-radius: 0.35rem;
     background-color: var(--color-very-light);
     box-shadow: 0 2px 8px var(--join-card-shadow-color);
+    animation: fadeIn 1s;
+    transition: box-shadow 180ms ease;
+}
+
+.membership-card:hover {
+    box-shadow: 0 5px 14px var(--join-card-shadow-hover);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .membership-bronze {
@@ -141,6 +158,58 @@ dialog li {
     cursor: pointer;
 }
 
+.submission-summary {
+    max-width: 46rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-left: 0.4rem solid var(--color-primary);
+    border-radius: 0.35rem;
+    background-color: var(--color-light);
+}
+
+.submission-summary h2 {
+    margin-top: 0;
+}
+
+.submission-summary dl {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.submission-summary dl > div {
+    display: grid;
+    gap: 0.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--join-card-border-color);
+}
+
+.submission-summary dt {
+    font-weight: 700;
+}
+
+.submission-summary dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.thankyou-home-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-very-light);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.thankyou-home-link:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
 @media screen and (min-width: 48rem) {
     .join-layout {
         grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr);
@@ -150,5 +219,12 @@ dialog li {
 
     .membership-cards {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .membership-card {
+        animation: none;
+        transition: none;
     }
 }

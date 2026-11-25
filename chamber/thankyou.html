@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Haiku Chamber of Commerce</title>
+    <meta name="author" content="Anne Ferris">
+    <meta name="description" content="Thank you for applying to join the Haiku Chamber of Commerce.">
+    <meta property="og:title" content="Thank You - Haiku Chamber of Commerce">
+    <meta property="og:description" content="Thank you for applying to join the Haiku Chamber of Commerce.">
+    <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/chamber/thankyou.html">
+    <meta property="og:image"
+        content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <script type="module" src="scripts/thankyou.js"></script>
+    <link rel="stylesheet" href="styles/directory-normalize.css">
+    <link rel="stylesheet" href="styles/directory.css">
+    <link rel="stylesheet" href="styles/directory-larger.css">
+    <link rel="stylesheet" href="styles/join.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=optional"
+        id="google-fonts" rel="stylesheet" media="print">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=swap">
+</head>
+
+<body>
+    <header>
+        <a class="site-brand" href="../index.html">
+            <img src="images/truck.svg" alt="">
+            <span>Haiku Chamber of Commerce</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
+            aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="primary-navigation">
+            <a href="index.html">Home</a>
+            <a href="directory.html">Directory</a>
+            <a href="join.html" aria-current="page">Join</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Thank You for Your Application</h1>
+        <p id="submission-status" role="status" aria-live="polite"></p>
+        <section id="submission-summary" class="submission-summary" aria-labelledby="summary-heading" hidden>
+            <h2 id="summary-heading">Your membership application</h2>
+            <dl>
+                <div>
+                    <dt>First name</dt>
+                    <dd id="submitted-first-name"></dd>
+                </div>
+                <div>
+                    <dt>Last name</dt>
+                    <dd id="submitted-last-name"></dd>
+                </div>
+                <div>
+                    <dt>Email address</dt>
+                    <dd id="submitted-email"></dd>
+                </div>
+                <div>
+                    <dt>Mobile phone number</dt>
+                    <dd id="submitted-phone"></dd>
+                </div>
+                <div>
+                    <dt>Business or organization</dt>
+                    <dd id="submitted-organization"></dd>
+                </div>
+                <div>
+                    <dt>Submitted on</dt>
+                    <dd id="submitted-timestamp"></dd>
+                </div>
+            </dl>
+        </section>
+        <p><a class="thankyou-home-link" href="index.html">Return to the home page</a></p>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            <p class="footer-name">Haiku Chamber of Commerce</p>
+            <p>1234 Roadside Avenue</p>
+            <p>96 Hawaii, USA</p>
+            <p>totallyrealinfo@haikucc.org</p>
+            <p>+1 808 101-1010</p>
+        </div>
+        <nav class="social-links" aria-label="Social links">
+            <a href="https://github.com/annehutchinson407-debug/wdd231" aria-label="GitHub">
+                <img src="images/github.svg" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/anne-ferris-639a38439/" aria-label="LinkedIn">
+                <img src="images/linkedin.svg" alt="">
+            </a>
+            <a href="https://www.youtube.com/" aria-label="YouTube">
+                <img src="images/youtube.svg" alt="">
+            </a>
+        </nav>
+        <div class="footer-project">
+            <p>WDD231 Class Project</p>
+            <p>Anne Ferris</p>
+            <p>©<span id="currentYear"></span> Haiku Chamber of Commerce</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+</body>
+
+</html>
