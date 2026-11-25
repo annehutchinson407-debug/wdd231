@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join the Haiku Chamber of Commerce</title>
     <meta name="author" content="Anne Ferris">
-    <meta name="description" content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
+    <meta name="description"
+        content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
     <meta property="og:title" content="Join the Haiku Chamber of Commerce">
-    <meta property="og:description" content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
+    <meta property="og:description"
+        content="Apply to join the Haiku Chamber of Commerce and grow your local business network.">
     <meta property="og:url" content="https://annehutchinson407-debug.github.io/wdd231/chamber/join.html">
-    <meta property="og:image" content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
+    <meta property="og:image"
+        content="https://annehutchinson407-debug.github.io/wdd231/chamber/images/haiku-hawaii.jpg">
     <script type="module" src="scripts/join.js"></script>
     <link rel="stylesheet" href="styles/directory-normalize.css">
     <link rel="stylesheet" href="styles/directory.css">
     <link rel="stylesheet" href="styles/directory-larger.css">
+    <link rel="stylesheet" href="styles/join.css">
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=optional"
         id="google-fonts" rel="stylesheet" media="print">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inter:wght@400;700&display=swap">
 </head>
 
 <body>
@@ -43,7 +48,8 @@
         </nav>
     </header>
     <main>
-        <div>
+        <h1>Join the Haiku Chamber of Commerce</h1>
+        <div class="join-layout">
             <form>
                 <label>First name
                     <input type="text" id="first-name" name="firstName" title="Enter your first name" required>
@@ -67,11 +73,11 @@
                 </label>
                 <label for="membership">Membership level
                     <select id="membership" name="membership" title="Choose a membership level" required>
-                        <option>Select a membership</option>
-                        <option>NP Membership (no fee)</option>
-                        <option>Bronze Membership</option>
-                        <option>Silver Membership</option>
-                        <option>Gold Membership</option>
+                        <option selected disabled>Select a membership</option>
+                        <option value="np">NP Membership (no fee)</option>
+                        <option value="bronze">Bronze Membership</option>
+                        <option value="silver">Silver Membership</option>
+                        <option value="gold">Gold Membership</option>
                     </select>
                 </label>
                 <label for="description">Vendor description
@@ -88,22 +94,74 @@
                     <article class="membership-card membership-np">
                         <h3>NP Membership</h3>
                         <p>For nonprofit organizations</p>
+                        <p class="membership-price">No fee</p>
+                        <a href="#np-benefits" data-dialog="np-benefits">View benefits</a>
                     </article>
                     <article class="membership-card membership-bronze">
                         <h3>Bronze Membership</h3>
                         <p>Build your local connections</p>
+                        <p class="membership-price">$50 per year</p>
+                        <a href="#bronze-benefits" data-dialog="bronze-benefits">View benefits</a>
                     </article>
                     <article class="membership-card membership-silver">
                         <h3>Silver Membership</h3>
                         <p>Grow your reach and visibility</p>
+                        <p class="membership-price">$100 per year</p>
+                        <a href="#silver-benefits" data-dialog="silver-benefits">View benefits</a>
                     </article>
                     <article class="membership-card membership-gold">
                         <h3>Gold Membership</h3>
                         <p>Make the most with every opportunity</p>
+                        <p class="membership-price">$250 per year</p>
+                        <a href="#gold-benefits" data-dialog="gold-benefits">View benefits</a>
                     </article>
                 </div>
             </aside>
         </div>
+        <dialog id="np-benefits" aria-labelledby="np-benefits-heading">
+            <h2 id="np-benefits-heading">NP Membership Benefits</h2>
+            <p>For nonprofit organizations at no cost.</p>
+            <ul>
+                <li>Access to chamber networking events</li>
+                <li>Community and nonprofit resource listings</li>
+                <li>Invitations to nonprofit training sessions</li>
+            </ul>
+            <button class="dialog-close" type="button">Close</button>
+        </dialog>
+        <dialog id="bronze-benefits" aria-labelledby="bronze-benefits-heading">
+            <h2 id="bronze-benefits-heading">Bronze Membership Benefits</h2>
+            <p>$50 per year.</p>
+            <ul>
+                <li>All NP Membership benefits</li>
+                <li>Business listing in the chamber directory</li>
+                <li>Invitations to member networking events</li>
+                <li>Discounted admission to chamber workshops</li>
+            </ul>
+            <button class="dialog-close" type="button">Close</button>
+        </dialog>
+        <dialog id="silver-benefits" aria-labelledby="silver-benefits-heading">
+            <h2 id="silver-benefits-heading">Silver Membership Benefits</h2>
+            <p>$100 per year.</p>
+            <ul>
+                <li>All Bronze Membership benefits</li>
+                <li>Discounts on chamber event registrations</li>
+                <li>One business spotlight on the chamber homepage each year</li>
+                <li>Priority access to business training sessions</li>
+            </ul>
+            <button class="dialog-close" type="button">Close</button>
+        </dialog>
+        <dialog id="gold-benefits" aria-labelledby="gold-benefits-heading">
+            <h2 id="gold-benefits-heading">Gold Membership Benefits</h2>
+            <p>$250 per year.</p>
+            <ul>
+                <li>All Silver Membership benefits</li>
+                <li>Two additional homepage business spotlights each year</li>
+                <li>Complimentary admission for two to select chamber events</li>
+                <li>Featured placement in the chamber directory</li>
+                <li>One-on-one business development consultation</li>
+            </ul>
+            <button class="dialog-close" type="button">Close</button>
+        </dialog>
     </main>
     <footer>
         <div class="footer-contact">

@@ -1,0 +1,154 @@
+:root {
+    --join-form-border-color: #627783;
+    --join-card-border-color: #b5c7d0;
+    --join-card-shadow-color: #0000001a;
+    --join-bronze-color: #9c5d32;
+    --join-silver-color: #71818a;
+    --join-gold-color: #b68b00;
+    --join-dialog-backdrop-color: #0a354acc;
+}
+
+.join-layout {
+    display: grid;
+    gap: 2rem;
+}
+
+.join-layout form {
+    display: grid;
+    gap: 1rem;
+}
+
+.join-layout form > label {
+    display: grid;
+    gap: 0.4rem;
+    font-weight: 700;
+}
+
+.join-layout input,
+.join-layout select,
+.join-layout textarea {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.65rem;
+    border: 1px solid var(--join-form-border-color);
+    border-radius: 0.25rem;
+    color: var(--color-dark);
+    font: inherit;
+}
+
+.join-layout textarea {
+    resize: vertical;
+}
+
+.join-layout input:focus-visible,
+.join-layout select:focus-visible,
+.join-layout textarea:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.join-layout .join-submit {
+    min-height: 3rem;
+    border: 0;
+    background-color: var(--color-primary);
+    color: var(--color-very-light);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.membership-section h2 {
+    margin: 0 0 1rem;
+}
+
+.membership-cards {
+    display: grid;
+    gap: 1rem;
+}
+
+.membership-card {
+    padding: 1rem;
+    border: 1px solid var(--join-card-border-color);
+    border-top: 0.35rem solid var(--color-primary);
+    border-radius: 0.35rem;
+    background-color: var(--color-very-light);
+    box-shadow: 0 2px 8px var(--join-card-shadow-color);
+}
+
+.membership-bronze {
+    border-top-color: var(--join-bronze-color);
+}
+
+.membership-silver {
+    border-top-color: var(--join-silver-color);
+}
+
+.membership-gold {
+    border-top-color: var(--join-gold-color);
+}
+
+.membership-card h3 {
+    margin: 0 0 0.5rem;
+}
+
+.membership-card p {
+    margin: 0 0 0.65rem;
+}
+
+.membership-card .membership-price {
+    font-weight: 700;
+}
+
+.membership-card a {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.membership-card a:focus-visible,
+.dialog-close:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+dialog {
+    width: min(34rem, calc(100% - 2rem));
+    max-height: calc(100% - 2rem);
+    padding: 1.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 0.5rem;
+    color: var(--color-dark);
+}
+
+dialog::backdrop {
+    background-color: var(--join-dialog-backdrop-color);
+}
+
+dialog h2 {
+    margin-top: 0;
+}
+
+dialog li {
+    margin-bottom: 0.5rem;
+}
+
+.dialog-close {
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-very-light);
+    font: inherit;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 48rem) {
+    .join-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr);
+        align-items: start;
+        gap: 3rem;
+    }
+
+    .membership-cards {
+        grid-template-columns: 1fr;
+    }
+}
