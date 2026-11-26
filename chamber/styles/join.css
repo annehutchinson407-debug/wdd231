@@ -14,9 +14,9 @@
     --3: #b68b00;
     --dialog-backdrop: #0a354a;
     --membership-np: #eaf5fa;
-    --membership-1: #f7eee8;
-    --membership-2: #edf1f3;
-    --membership-3: #fff8df;
+    --membership-br: #f7eee8;
+    --membership-si: #edf1f3;
+    --membership-gl: #fff8df;
 }
 
 body {
@@ -150,7 +150,7 @@ footer p {
     gap: 1rem;
 }
 
-.join-layout form > label {
+.join-layout form>label {
     display: grid;
     font-weight: 700;
     gap: 0.4rem;
@@ -221,19 +221,19 @@ footer p {
 }
 
 .membership-bronze {
-    --membership-tint: var(--membership-1);
+    --membership: var(--membership-br);
     --membership-delay: 0.12s;
     border-top-color: var(--1);
 }
 
 .membership-silver {
-    --membership-tint: var(--membership-2);
+    --membership: var(--membership-si);
     --membership-delay: 0.24s;
     border-top-color: var(--2);
 }
 
 .membership-gold {
-    --membership-tint: var(--membership-3);
+    --membership: var(--membership-gl);
     --membership-delay: 0.36s;
     border-top-color: var(--3);
 }
@@ -244,7 +244,7 @@ footer p {
     }
 
     to {
-        background-color: var(--membership-tint);
+        background-color: var(--membership);
     }
 }
 
@@ -323,7 +323,7 @@ dialog li {
     margin: 0;
 }
 
-.submission-summary dl > div {
+.submission-summary dl>div {
     display: grid;
     border-bottom: 1px solid var(--card-border);
     padding-bottom: 0.75rem;
