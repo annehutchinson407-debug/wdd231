@@ -60,7 +60,8 @@
                 </label>
                 <label for="organization-title">Organizational title
                     <input type="text" id="organization-title" name="organizationTitle"
-                        autocomplete="organization-title" title="Use at least seven letters, spaces, or hyphens">
+                        autocomplete="organization-title" pattern="[A-Za-z\s-]{7,}"
+                        title="Use at least seven letters, spaces, or hyphens">
                 </label>
                 <label for="email">Email address
                     <input type="email" id="email" name="email" autocomplete="email"
