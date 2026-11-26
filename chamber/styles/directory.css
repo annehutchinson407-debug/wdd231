@@ -3,7 +3,6 @@
     --color-dark: #0a354a;
     --color-light: #dcecf4;
     --color-highlight: #f2f604;
-    --color-clear: #ffffff00;
     --color-very-light: #ffffff;
     --color-shadow: #000000;
 }
@@ -47,7 +46,7 @@ header {
     padding: 0.5rem;
     border: 1px solid var(--color-very-light);
     border-radius: 0.25rem;
-    background: var(--color-clear);
+    background: none;
     cursor: pointer;
 }
 

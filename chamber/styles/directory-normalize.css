@@ -2,11 +2,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --color-clear: #ffffff00;
-}
-
-
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -29,8 +24,4 @@ img {
     max-width: 100%;
     height: auto;
     border-style: none;
-}
-
-a {
-    background-color: var(--color-clear);
 }
