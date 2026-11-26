@@ -51,24 +51,27 @@
         <div class="join-layout">
             <form action="thankyou.html" method="get">
                 <label>First name
-                    <input type="text" id="first-name" name="firstName" title="Enter your first name" required>
+                    <input type="text" id="first-name" name="firstName" autocomplete="given-name"
+                        title="Enter your first name" required>
                 </label>
                 <label for="last-name">Last name
                     <input type="text" id="last-name" name="lastName" title="Enter your last name" required>
                 </label>
                 <label for="organization-title">Organizational title
                     <input type="text" id="organization-title" name="organizationTitle"
-                        title="Use at least seven letters, spaces, or hyphens">
+                        autocomplete="organization-title" title="Use at least seven letters, spaces, or hyphens">
                 </label>
                 <label for="email">Email address
-                    <input type="email" id="email" name="email" title="Enter a valid email address" required>
+                    <input type="email" id="email" name="email" autocomplete="email"
+                        placeholder="name@example.com" title="Enter a valid email address" required>
                 </label>
                 <label for="phone">Mobile phone number
-                    <input type="tel" id="phone" name="phone" title="Enter your mobile phone number" required>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel"
+                        title="Enter your mobile phone number" required>
                 </label>
                 <label for="organization">Business or organization name
                     <input type="text" id="organization" name="organization"
-                        title="Enter your business or organization name" required>
+                        autocomplete="organization" title="Enter your business or organization name" required>
                 </label>
                 <label for="membership">Membership level
                     <select id="membership" name="membership" title="Choose a membership level" required>
