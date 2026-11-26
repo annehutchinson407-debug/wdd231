@@ -14,6 +14,10 @@
     --silver: #71818a;
     --gold: #b68b00;
     --dialog-backdrop: #0a354acc;
+    --membership-np: #eaf5fa;
+    --membership-bronze: #f7eee8;
+    --membership-silver: #edf1f3;
+    --membership-gold: #fff8df;
 }
 
 body {
@@ -186,13 +190,15 @@ footer p {
 }
 
 .membership-card {
-    background-color: var(--color-very-light);
+    background-color: var(--membership, var(--color-very-light));
     padding: 1rem;
     border: 1px solid var(--card-border);
     border-top: 0.35rem solid var(--color-primary);
     border-radius: 0.35rem;
     box-shadow: 0 2px 8px var(--card-shadow);
-    animation: fadeIn 1s;
+    animation:
+        fadeIn 1s ease var(--membership-delay, 0s) both,
+        membershipColorReveal 1.6s ease-out var(--membership-delay, 0s) both;
     transition: box-shadow 180ms ease;
 }
 
@@ -210,16 +216,43 @@ footer p {
     }
 }
 
+.membership-np {
+    --membership-tint: var(--membership-np);
+    --membership-delay: 0s;
+}
+
 .membership-bronze {
+    --membership-tint: var(--membership-bronze);
+    --membership-delay: 0.12s;
     border-top-color: var(--bronze);
 }
 
 .membership-silver {
+    --membership-tint: var(--membership-silver);
+    --membership-delay: 0.24s;
     border-top-color: var(--silver);
 }
 
 .membership-gold {
+    --membership-tint: var(--membership-gold);
+    --membership-delay: 0.36s;
     border-top-color: var(--gold);
+}
+
+@keyframes membershipColorReveal {
+    from {
+        background-color: var(--color-very-light);
+    }
+
+    to {
+        background-color: var(--membership-tint);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .membership-card {
+        animation: none;
+    }
 }
 
 .membership-card h3 {
