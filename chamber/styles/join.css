@@ -9,9 +9,9 @@
     --card-border: #b5c7d0;
     --card-shadow: #e6e6e6;
     --card-hover-shadow: #cccccc;
-    --1: #9c5d32;
-    --2: #71818a;
-    --3: #b68b00;
+    --br: #9c5d32;
+    --si: #71818a;
+    --gl: #b68b00;
     --dialog-backdrop: #0a354a;
     --membership-np: #eaf5fa;
     --membership-br: #f7eee8;
@@ -223,19 +223,19 @@ footer p {
 .membership-bronze {
     --membership: var(--membership-br);
     --membership-delay: 0.12s;
-    border-top-color: var(--1);
+    border-top-color: var(--br);
 }
 
 .membership-silver {
     --membership: var(--membership-si);
     --membership-delay: 0.24s;
-    border-top-color: var(--2);
+    border-top-color: var(--si);
 }
 
 .membership-gold {
     --membership: var(--membership-gl);
     --membership-delay: 0.36s;
-    border-top-color: var(--3);
+    border-top-color: var(--gl);
 }
 
 @keyframes membershipColorReveal {
